@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Photo</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<style>
+    h2{
+        color: darkblue;
+    }
+    .next-md-4{
+        margin-left: 400px;
+        margin-top: -200px;
+
+    }
+    .next1{
+        margin-left: 700px;
+        margin-top: -85px;
+    }
+    .container{
+        width: 1300px;
+    }
+</style>
+</head>
+
+<body class="m-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col">
+
+                <a href="{% url 'dashboard' %}" class="btn btn-dark my-3">Go Back</a>
+
+                <div style="height: 90vh;">
+                    <img style="max-width: 100%; max-height: 100%;" src="{{photo.image.url}}">
+                    <h2>Book Discription:</h2>
+                    <p>{{photo.description}}</p>
+                    <br>
+                    <h2>Category:</h2>
+                    <p>{{ photo.category }}</p>
+                   <div class="next-md-4">
+                    <h2>Books Name:</h2>
+                    <p>{{ Categories.name }}</p>
+                    <br>
+                    <h2>Book Quantity:</h2>
+                    <p>{{ Categories.quantity }}</p>
+
+                   </div>
+                    <div class="next1">
+
+                    <h2>Author:</h2>
+                    <p>{{ Categories.author }}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

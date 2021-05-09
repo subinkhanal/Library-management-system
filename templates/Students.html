@@ -1,0 +1,51 @@
+{%  extends 'main.html' %}
+
+{% block content %}
+
+		<br>
+
+		<div class="row">
+			<div class="col-md">
+				<div class="card card-body">
+					<h5>Students Details</h5>
+				</div>
+				<div class="card card-body">
+					<table class="table">
+						<tr>
+							<th>Student Name</th>
+							<th>Student ID</th>
+                            <th>Email ID</th>
+							<th>Mobile Number</th>
+                            <th>Registered Date</th>
+                            <th>Action</th>
+						</tr>
+
+						{% for Students in Students %}
+
+							<tr>
+								<td>{{Students.name}}</td>
+								<td>{{Students.username}}</td>
+								<td>{{Students.email}}</td>
+                                <td>{{Students.phone }}</td>
+                                <td>{{Students.date }}</td>
+                                <td>
+{#                                    <button><a href="/edit{{ Students.name }}"><span class="edits glyphicon-pencil">Edit</span></a></button>#}
+                                     <button><a><span class="edits glyphicon-pencil">Edit</span></a></button>
+
+                                    <button onclick="myFunction()"><a>Delete</a></button><script>
+                                    function myFunction() {
+                                    document.getElementById("myTable").deleteRow(0);
+                                    }
+                                    </script>
+
+                                </td>
+							</tr>
+						{% endfor %}
+						
+					</table>
+				</div>
+			</div>
+			
+		</div>
+
+{% endblock content %}

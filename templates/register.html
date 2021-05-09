@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<video loop muted autoplay playsinline class="video">
+  <source src="../static/back.mp4" type="video/mp4" />
+</video>
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <style>
+        *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    background: #fbf3ff;
+}
+.container {
+    position:absolute;
+    max-width: 800px;
+    height: 590px;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    }
+.myRightCtn{
+    position: relative;
+    background-image: linear-gradient(45deg, #00d4ff, #9b00e8);
+    border-radius: 25px;
+    height: 100%;
+    padding: 25px;
+    color: rgb(192, 192, 192);
+    font-size: large;
+    font-family: system-ui;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120%;
+    margin-left: 20px;
+
+}
+.myRightCtn header{
+    color: darkred;
+    font-size: 24px;
+}
+.top{
+    margin-bottom: -20px;
+}
+.myLeftCtn {
+    position: relative;
+    background: #fff;
+    border-radius: 25px;
+    height: 100%;
+    padding: 25px 25px 25px 50px;
+}
+.myLeftCtn header
+{
+    color: blueviolet;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: -30px;
+}
+.row{
+    height: 100%;
+}
+.myCard {
+    position: relative;
+    background: #fff;
+    height: 100%;
+    border-radius: 25px;
+    -webkit-box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0px 10px 40px -10px rgba(0, 0, 0,0.7);
+    box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.7);
+}
+.box {
+    position: relative;
+    margin: 20px 20px 100px;
+}
+.box p{
+    color: greenyellow;
+    size: A5;
+    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+
+}
+.myLeftCtn .myInput{
+
+    border-radius: 25px;
+    padding: 10px 10px 10px 50px;
+    border: none;
+    -webkit-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+    width: 50%;
+}
+.myLeftCtn .myInput:focus
+{
+    outline: none;
+}
+.myForm{
+    position: relative;
+    margin-top: 50px;
+}
+.myLeftCtn .butt{
+    background: linear-gradient(45deg, #bb36fd, #9b00e8);
+    color: #fff;
+    width: 270px;
+    border: none;
+    border-radius: 25px;
+    padding: 10px;
+    -webkit-box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
+}
+.myLeftCtn .butt:hover
+{
+    background: linear-gradient(45deg, #00d4ff, #b726ff);
+}
+
+
+    </style>
+
+
+</head>
+<body>
+	<div class="container">
+		<div class="myCard">
+			<div class="row">
+                <div class="myLeftCtn">
+                    <div class="top">
+                        <header>Create new account</header>
+                        </div>
+					<form class="myForm text-center" method="POST" action="" style="margin-top: -10px">
+						{% csrf_token %}
+
+                        <br>
+						<div class="form-group" style="margin-top: 10px">
+
+							{{form.username}}
+						</div>
+						<div class="form-group" >
+							<div class="fas">
+								<span class="myInput" aria-placeholder="enter email..."></span>
+							</div>
+							{{form.email}}
+						</div>
+
+						<div class="form-group">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							{{form.password1}}
+						</div>
+						<div class="form-group">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							{{form.password2}}
+						</div>
+                        <div class="form-group" style="margin-top: -10px; height: 25px;">
+
+							normal user?{{form.is_staff}}
+						</div><br>
+                         <div class="form">
+							ValidDate{{form.date_joined}}
+						</div>
+
+
+
+				   		<div class="d-flex justify-content-center mt-3 login_container">
+				 			<input class="butt" type="submit" value="Register Account">
+				   		</div>
+                        <div class="mt-4">
+					<div class="d-flex justify-content-center links">
+						Already have an account? <a href="{% url 'login' %}" class="ml-2">Login</a>
+					</div>
+				</div>
+
+					</form>
+				</div>
+                 <div class="col-md-6">
+            <div class="myRightCtn">
+                <div class="box">
+                    <header>WELCOME</header>
+                    <p>Library management is a branch of institutional management that focuses
+                        <br> on the problems that libraries and library management practitioners<br>
+                        face. Normal managerial functions, as well as intellectual freedom and <br>
+                        fundraising responsibilities, are all part of library management.
+                        <br>
+                        <br>
+                        {{ form.errors }}
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+            </div>
+
+			</div>
+
+		</div>
+
+	<script>
+						/* Because i didnt set placeholder values in forms.py they will be set here using vanilla Javascript
+		//We start indexing at one because CSRF_token is considered and input field
+		 */
+
+		//Query All input fields
+		var form_fields = document.getElementsByTagName('input')
+		form_fields[1].placeholder='Username..';
+		form_fields[2].placeholder='Email..';
+		form_fields[3].placeholder='Enter password...';
+		form_fields[4].placeholder='Re-enter Password...';
+
+
+		for (var field in form_fields){
+			form_fields[field].className += ' form-control'
+		}
+	</script>
+</body>
+</html>
+
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+{#<title> Login Form</title>#}
+{#<meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">#}
+{#<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>#}
+{##}
+
+{##}
+{#</head>#}
+{##}
+{##}
+{##}
+{#<body>#}
+{#    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>#}
+{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.1/umd/popper.min.js" integrity="sha512-g2PN+aYR0KupTVwea5Ppqw4bxWLLypWdd+h7E0ydT8zF+/Y2Qpk8Y1SnzVw6ZCVJPrgB/91s3VfhVhP7Y4+ucw==" crossorigin="anonymous"></script>#}
+{#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">#}
+{
+{#<script>#}
+{#						/* Because i didnt set placeholder values in forms.py they will be set here using vanilla Javascript#}
+{#		//We start indexing at one because CSRF_token is considered and input field #}
+{#		 */#}
+{##}
+{#		//Query All input fields#}
+{#		var form_fields = document.getElementsByTagName('input')#}
+{#		form_fields[1].placeholder='Username..';#}
+{#		form_fields[2].placeholder='Email..';#}
+{#		form_fields[3].placeholder='Enter password...';#}
+{#		form_fields[4].placeholder='Re-enter Password...';#}
+{##}
+{##}
+{#		for (var field in form_fields){	#}
+{#			form_fields[field].className += ' form-control'#}
+{#		}#}
+{#	</script>#}
+{#</body>#}
+{##}
+{#</html>#}
+

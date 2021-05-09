@@ -1,0 +1,401 @@
+{#<!DOCTYPE html>#}
+{#<html>#}
+{##}
+{#<head>#}
+{#	<title>Login</title>#}
+{#	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">#}
+{#	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>#}
+{#	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">#}
+{##}
+{##}
+{#	<style>#}
+{#		body,#}
+{#		html {#}
+{#			margin: 0;#}
+{#			padding: 0;#}
+{#			height: 100%;#}
+{#			background: greenyellow !important;#}
+{#		}#}
+{#		.user_card {#}
+{#            background-image: url("https://www.scisdata.com/media/1333/scis_bl0417_2_119.jpg?width=1045&mode=max&upscale=false.jpg");#}
+{#			width: 350px;#}
+{#			margin-top: auto;#}
+{#			margin-bottom: auto;#}
+{#			background: peru;#}
+{#			position: relative;#}
+{#			display: flex;#}
+{#			justify-content: center;#}
+{#			flex-direction: column;#}
+{#			padding: 10px;#}
+{#			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);#}
+{#			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);#}
+{#			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);#}
+{#			border-radius: 5px;#}
+{##}
+{#		}#}
+{##}
+{#		.form_container {#}
+{#			margin-top: 20px;#}
+{#		}#}
+{##}
+{#		#form-title{#}
+{#			color: #fff;#}
+{##}
+{#		}#}
+{##}
+{#		.login_btn {#}
+{#			width: 100%;#}
+{#			background: #33ccff !important;#}
+{#			color: white !important;#}
+{#		}#}
+{#		.login_btn:focus {#}
+{#			box-shadow: none !important;#}
+{#			outline: 0px !important;#}
+{#		}#}
+{#		.login_container {#}
+{#			padding: 0 2rem;#}
+{#		}#}
+{#		.input-group-text {#}
+{#			background: #f7ba5b !important;#}
+{#			color: white !important;#}
+{#			border: 0 !important;#}
+{#			border-radius: 0.25rem 0 0 0.25rem !important;#}
+{#		}#}
+{#		.input_user,#}
+{#		.input_pass:focus {#}
+{#			box-shadow: none !important;#}
+{#			outline: 0px !important;#}
+{#		}#}
+{##}
+{#		#messages{#}
+{#			background-color: grey;#}
+{#			color: #fff;#}
+{#			padding: 10px;#}
+{#			margin-top: 10px;#}
+{#		}#}
+{#	</style>#}
+{##}
+{#</head>#}
+{#<body>#}
+{#	<div class="container h-100">#}
+{#		<div class="d-flex justify-content-center h-100">#}
+{#			<div class="user_card">#}
+{#				<div class="d-flex justify-content-center">#}
+{##}
+{##}
+{#					<h3 id="form-title">LOGIN</h3>#}
+{#				</div>#}
+{#				<div class="d-flex justify-content-center form_container">#}
+{#					<form method="POST" action="">#}
+{#						{% csrf_token %}#}
+{#						<div class="input-group mb-3">#}
+{#							<div class="input-group-append">#}
+{#								<span class="input-group-text"><i class="fas fa-user"></i></span>#}
+{#							</div>#}
+{##}
+{#							<input type="text" name="username" placeholder="Username..." class="form-control">#}
+{#						</div>#}
+{##}
+{#						<div class="input-group mb-2">#}
+{#							<div class="input-group-append">#}
+{#								<span class="input-group-text"><i class="fas fa-key"></i></span>#}
+{#							</div>#}
+{##}
+{#								<input type="password" name="password" placeholder="Password..." class="form-control" >#}
+{#						</div>#}
+{##}
+{#							<div class="d-flex justify-content-center mt-3 login_container">#}
+{#				 				<input class="btn login_btn" type="submit" value="Login">#}
+{#				   			</div>#}
+{#					</form>#}
+{##}
+{#				</div>#}
+{##}
+{#				{% for message in messages %}#}
+{#					<p id="messages">{{message}}</p>#}
+{#				{% endfor %}			#}
+{##}
+{#				<div class="mt-4">#}
+{#					<div class="d-flex justify-content-center links">#}
+{#						Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>#}
+{#					</div>#}
+{##}
+{#				</div>#}
+{#			</div>#}
+{#		</div>#}
+{#	</div>#}
+{#</body>#}
+{##}
+{#</html>#}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<video loop muted autoplay playsinline class="video">
+  <source src="../static/back.mp4" type="video/mp4" />
+</video>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="static/css/Login_form.css" />
+     <title>Sign In/Up Form</title>
+
+    <style>
+
+    * {
+	box-sizing: border-box;
+}
+
+body {
+	background: #f6f5f7;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	font-family: 'Montserrat', sans-serif;
+	height: 100vh;
+	margin: -20px 0 50px;
+}
+
+h1 {
+	font-weight: bold;
+	margin: 0;
+}
+p {
+	font-size: 14px;
+	font-weight: 100;
+	line-height: 20px;
+	letter-spacing: 0.5px;
+	margin: 20px 0 30px;
+}
+
+span {
+	font-size: 12px;
+}
+
+a {
+	color: greenyellow;
+	font-size: 14px;
+	text-decoration: none;
+	margin: 15px 0;
+}
+
+button {
+	border-radius: 20px;
+	border: none;
+	background-color:greenyellow;
+	color: #fff;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+    -webkit-box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
+}
+button:hover
+{
+    background: linear-gradient(45deg, #00d4ff, #b726ff);
+}
+
+button:active {
+	transform: scale(0.95);
+}
+
+button:focus {
+	outline: none;
+}
+
+button.ghost {
+	background-color: transparent;
+	border-color: #FFFFFF;
+}
+
+form {
+    position: relative;
+    margin-top: 50px;
+	background-color: #FFFFFF;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 50px;
+	height: 100%;
+	text-align: center;
+}
+
+input {
+	background-color: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 100%;
+}
+
+.container {
+    position: absolute;
+	background-color: #fff;
+	border-radius: 10px;
+	overflow: hidden;
+	width: 768px;
+	min-height: 480px;
+    max-width: 800px;
+    height: 500px;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0px 10px 40px -10px rgba(0, 0, 0,0.7);
+    box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.7);
+}
+
+.form-container {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	transition: all 0.6s ease-in-out;
+}
+.sign-in-container{
+	left: 0;
+	width: 50%;
+	z-index: 2;
+}
+
+.Container.Right-Panel-Active .sign-in-container {
+	transform: translateX(100%);
+}
+
+.sign-up-container {
+	left: 0;
+	width: 50%;
+	opacity: 0;
+	z-index: 1;
+}
+
+.Container.Right-Panel-Active .sign-up-container {
+	transform: translateX(100%);
+	opacity: 1;
+	z-index: 5;
+	animation: show 0.6s;
+}
+.Overlay-Container {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 50%;
+	height: 100%;
+	overflow: hidden;
+	transition: transform 0.6s ease-in-out;
+	z-index: 100;
+}
+
+.Container.Right-Panel-Active .Overlay-Container{
+	transform: translateX(-100%);
+}
+
+.Overlay {
+	background: #00d4ff;
+	background: -webkit-linear-gradient(to left, #00d4ff, #9b00e8);
+	background:linear-gradient(45deg, #00d4ff, #9b00e8);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0 0;
+	color: rgb(192, 192, 192);
+	position: relative;
+	left: -100%;
+	height: 100%;
+	width: 200%;
+  	transform: translateX(0);
+	transition: transform 0.6s ease-in-out;
+}
+
+.Container.Right-Panel-Active .Overlay {
+  	transform: translateX(50%);
+}
+
+.Overlay-Panel {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 40px;
+	text-align: center;
+	top: 0;
+	height: 100%;
+	width: 50%;
+	transform: translateX(0);
+	transition: transform 0.6s ease-in-out;
+}
+
+.Overlay-left {
+	transform: translateX(-20%);
+}
+
+.Container.Right-Panel-Active .Overlay-left {
+	transform: translateX(0);
+}
+
+.Overlay-right {
+	right: 0;
+	transform: translateX(0);
+}
+
+.Container.Right-Panel-Active .Overlay-right {
+	transform: translateX(20%);
+}
+
+    </style>
+
+     </head>
+     <body>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.1/umd/popper.min.js" integrity="sha512-g2PN+aYR0KupTVwea5Ppqw4bxWLLypWdd+h7E0ydT8zF+/Y2Qpk8Y1SnzVw6ZCVJPrgB/91s3VfhVhP7Y4+ucw==" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+         <div class="container" id="container">
+
+             <div class="form-container sign-in-container">
+                 <form method="POST" action="">
+                     {% csrf_token %}
+                     <h1>Sign in</h1>
+                     <span>or use your account</span>
+                     <i class="fas fa-envelope">
+                         <input type="text" name="username" placeholder="UserName..." class="form-control">
+                     </i>
+                     <i class="fas fa-lock">
+                     <input type="password" placeholder="Password..." name="password" class="form-control">
+                     </i>
+                     <a href="#">Forget Password?</a>
+                     <input class="btn login_btn" type="submit" value="Login">
+                 </form>
+             </div>
+             <div class="Overlay-Container">
+                 <div class="Overlay">
+                     <div class="Overlay-Panel Overlay-left">
+                         <h1>Welcome Back!!</h1>
+                         <p>To Login Please Enter Your Personal Info</p>
+                         <button class="ghost" type="submit" id="SignIn" value="login">Sign in</button>
+                     </div>
+                     {% for message in messages %}
+					<p id="messages">{{message}}</p>
+				{% endfor %}
+                     <div class="Overlay-Panel Overlay-right">
+                         <h1>HELLO!!</h1>
+                         <p style="color: greenyellow; font-size: 20px">Don't have an account?</p>
+                         <button style="color: greenyellow">
+
+                         <a class="myRightCtn" id="SignUp"  href="{% url 'register' %}" style="font-size: 30px;  ">Sign up</a>
+                         </button>
+                     </div>
+
+                 </div>
+             </div>
+         </div>
+     </body>
+     </html>

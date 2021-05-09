@@ -1,0 +1,25 @@
+#logo{
+	}
+
+	body{
+		/*background-color:gray;*/
+		background-image: url("https://images.all-free-download.com/images/graphicthumb/wood_03_hd_picture_168502.jpg");
+	}
+
+
+	#total-orders{
+		background-color: #4cb4c7;
+	}
+
+
+	#orders-delivered{
+		background-color: #7abecc;
+	}
+
+	#orders-pending{
+		background-color: #7CD1C0;
+	}
+	#nav-item active{
+		background-color: darkgreen;
+	}
+

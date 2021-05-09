@@ -1,0 +1,128 @@
+body {
+    margin: 0;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+	background-color: aliceblue;
+    color: rgb(153, 165, 175);
+}
+
+.menu{
+	background: linear-gradient(45deg, #00d4ff, #9b00e8);
+
+
+}
+.navbar-light .navbar-nav .nav-link {
+    color: #fff;
+}
+
+.navbar-light .navbar-nav .active.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+    color: #fff;
+    background-color: #233742;
+}
+
+
+
+.carousel-caption {
+	background-color: rgb(0,0,0.5);
+}
+
+.about{
+	margin-top: -60px;
+}
+.about h1{
+	text-align: center;
+	color: #0e76bd;
+	font-family: 'Oswald', sans-serif;
+	font-size: 30px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: black;
+    font-style: oblique;
+    font-weight: inherit;
+}
+.f{
+	background:#000;
+    color: #8a8a8a;
+    font-size: 14px;
+    padding: 60px 0 20px;
+}
+.f p{
+	color: #8a8a8a;
+
+}
+.f h3{
+	color: #fff;
+	margin-bottom: 20px;
+}
+.fc1 ,.fc2,.fc3,.fc4{
+	min-width: 250px;
+	margin-bottom: 20px;
+}
+.fc1{
+	flex-basis: 30%;
+}
+.fc2{
+	flex: 1;
+	text-align: center;
+}
+.fc2 img{
+	width: 180px;
+	margin-bottom: 20px;
+
+}
+.fc3,.fc4{
+	flex-basis: 12%;
+	text-align: center;
+}
+ul{
+	list-style-type: none;
+}
+.flogo{
+	margin-top: 20px;
+}
+.flogo img{
+	width: 140px;
+}
+.f hr{
+	border: none;
+	background:#b5b5b5;
+	height: 1px;
+	margin: 20px 0;
+}
+.copyright{
+	text-align: center;
+}
+#footer{
+	background: #000;
+}
+
+.row{
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+.b{
+	display: flex;
+	background-image: linear-gradient(45deg, #9b00e8, #39d7ff);
+	color: #fff;
+	padding: 8px 60px;
+	margin: 27px 0;
+	border-radius: 25px;
+	transition: 0.5s;
+}
+.b:hover{
+	background: linear-gradient(45deg, #39d7ff, #9b00e8);
+}
+
+
+
