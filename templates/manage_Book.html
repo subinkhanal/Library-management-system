@@ -18,7 +18,7 @@
             <div class="card mb-3">
                 <div class="card-header" style="text-align: center">
                     <i class="fas fa-table text-primary"></i>
-                    Manage Students
+                    Posted Books details
                 </div>
                 <div class="card-body">
 
@@ -31,10 +31,14 @@
                             <tr>
                                 <th>S.N</th>
 
-                                <th>Student Name</th>
-                                <th>Email id</th>
 
-                                <th>Registered date</th>
+                                <th>Book Name</th>
+
+                                <th>Book Author</th>
+
+
+                                <th>Book quantity</th>
+
                                 <th>Action</th>
 
                             </tr>
@@ -42,26 +46,26 @@
                             <tbody>
 
 
-                            	{% if books %}
-                            	  {% for book in books %}
+                            	{% if students %}
+                            	  {% for book in students %}
 
 
                                 <tr>
                                 <td>{{ book.id }}</td>
 
 
-								<td>{{book.username}}</td>
-								<td>{{book.email}}</td>
 
+								<td>{{book.name}}</td>
+								<td>{{book.author}}</td>
 
-                                <td>{{book.date_joined }}</td>
+                                   <td>{{book.quantity }}</td>
 
 
                                     <td>
-                                    <a href="{% url 'lebook' book.id%}"><button type="button" class="btn btn-warning"> Edit</button></a>
+                                    <a href="{% url 'lestudent' book.id%}"><button type="button" class="btn btn-warning"> Edit</button></a>
 
 
-                                  <a href="{% url 'ldbookk' book.id%}"><button type="button" class="btn btn-danger"> Delete</button></a>
+                                  <a href="{% url 'ldstudent' book.id%}"><button type="button" class="btn btn-danger"> Delete</button></a>
                                     </td>
 
                                 </tr>

@@ -74,3 +74,6 @@ class UserForgotPasswordForm(PasswordResetForm):
                                         'id': 'email_address'
                                         }
                              ))
+
+
+

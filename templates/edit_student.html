@@ -17,31 +17,34 @@
 
         {% endif %}
             <div class="card mb-3">
-                <div class="card-header" >
-                    <i class="fas fa-table text-warning" style="margin-left: 35%"></i>
-                    Details Of Users
+                <div class="card-header">
+                    <i class="fas fa-table text-warning"></i>
+                    Details Of Book
                 </div>
+                <div class="card-body">
 
-
-    <div class="row" style="text-align: left; width:1300px; height: 400px; margin-top: 30px;">
+                     <div class="row" style="text-align: left; width:1000px; height: 400px; margin-top: 30px">
         <div class="col-12" style="width: 600px">
             <form method="post">
                 {% csrf_token %}
                 {% for field in form %}
-                    <div class="form-group" style="margin-left: 30%">
+                    <div class="form-group" style="margin-left: 50%">
                         {{ field.label_tag }}
                         {{ field }}
                     </div>
                 {% endfor %}
-            <div style="margin-left: 30%">
+            <div style="margin-left: 50%">
                 <input type="submit" {% if request.path == '/new' %}  value="Add" {% else %} value="Update" {% endif %} class="btn btn-success"/></div>
             {% if user.is_superuser %}
-                <a href="{% url 'lmbook' object.pk%}"><button type="button" class="btn btn-secondary">Back</button></a>
+                <a href="{% url 'lmstudent' object.pk%}"><button type="button" class="btn btn-secondary">Back</button></a>
             </form>
         </div>
     </div>
+        {% endif %}
+        </div>
+    </div>
 
-{% endif %}
+
           </div>
         </div>
       </div>

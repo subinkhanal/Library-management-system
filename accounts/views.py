@@ -1,4 +1,5 @@
 import itertools
+from datetime import datetime
 from operator import not_
 
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -6,22 +7,24 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 
 # from another python file import class
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DeleteView, DetailView, UpdateView
 
 from . import models
-from .forms import CreateUserForm, BookForm, Student
+from .forms import CreateUserForm, Category, Student
 from .models import Category, Photo
 
 
 # Create your views here.
-# def user_is_superuser(user):
-#     return user.is_superuser
+def user_is_superuser(user):
+    return user.is_superuser
+
 
 # Users login, reister, logout and Students Detail
 
@@ -59,14 +62,14 @@ def loginPage(request):
 
             if not request.user.is_superuser:
                 login(request, user)
-                return redirect('register')
+                return redirect('dashboard')
             else:
-                return redirect('register')
+                return redirect('dashboard')
         else:
             messages.info(request, 'Username OR password is incorrect')
 
-        context = {}
-        return render(request, 'login.html', context)
+    context = {}
+    return render(request, 'login.html', context)
 
 
 # logout part
@@ -83,7 +86,7 @@ def Students(request):
     return render(request, 'manage_Student.html', {'Students': Students})
 
 
-# @user_passes_test(user_is_superuser)
+@user_passes_test(user_is_superuser)
 def home(request):
     return render(request, 'Index.html', {'home': home})
 
@@ -120,7 +123,7 @@ def viewPhoto(request, pk):
     return render(request, 'photo.html', {'photo': photo, 'Categories': Categories})
 
 
-@login_required(login_url='login')
+@user_passes_test(user_is_superuser)
 def addPhoto(request):
     Catagories = Category.objects.all()
 
@@ -176,7 +179,6 @@ def usearch(request):
         # Searching for It
         qs5 = models.Category.objects.filter(name__iexact=a).distinct()
         qs6 = models.Category.objects.filter(name__exact=a).distinct()
-
         qs7 = models.Category.objects.all().filter(name__contains=a)
         qs8 = models.Category.objects.select_related().filter(id__contains=a).distinct()
         qs9 = models.Category.objects.filter(name__startswith=a).distinct()
@@ -266,11 +268,11 @@ def lsearch(request):
         return render(request, 'result.html', {'files': files, 'word': word})
 
 
-@login_required
-def StudentDelete(request, pk):
-    obj = get_object_or_404(Students, pk=pk)
-    obj.delete()
-    return redirect('index')
+# @login_required
+# def StudentDelete(request, pk):
+#     obj = get_object_or_404(Students, pk=pk)
+#     obj.delete()
+#     return redirect('index')
 
 
 # def search(request):
@@ -287,23 +289,22 @@ def StudentDelete(request, pk):
 
 
 # book delete
-class LDeleteView(LoginRequiredMixin, DeleteView):
-    model = Students
-    template_name = 'confirm_delete.html'
+class LDeleteView(DeleteView):
+    model = User
     success_url = reverse_lazy('lmbook')
+    template_name = 'confirm_delete.html'
     success_message = 'Data was deleted successfully'
 
 
 class LManageBook(LoginRequiredMixin, ListView):
     model = User
+    form_class = CreateUserForm
     template_name = 'manage_Student.html'
     context_object_name = 'books'
     paginate_by = 6
 
     def get_queryset(self):
         return User.objects.order_by('-id')
-
-
 
 
 # class LEditView(LoginRequiredMixin, UpdateView):
@@ -316,7 +317,47 @@ class LManageBook(LoginRequiredMixin, ListView):
 
 class LEditView(SuccessMessageMixin, UpdateView):
     model = User
-    form_class = BookForm
+    form_class = CreateUserForm
     template_name = 'edit_book.html'
     success_url = reverse_lazy('lmbook')
     success_message = 'Data was updated successfully'
+
+
+#     borrow book
+
+
+# view book
+# book delete
+
+class LDeleteViews(LoginRequiredMixin, DeleteView):
+    model = Category
+    template_name = 'confirm_delete_Book.html'
+    success_url = reverse_lazy('lmstudent')
+    success_message = 'Data was deleted successfully'
+
+
+class LManageStudent(LoginRequiredMixin, ListView):
+    model = Category
+    template_name = 'manage_Book.html'
+    context_object_name = 'students'
+    paginate_by = 10
+
+    def get_queryset(self):
+        return Category.objects.order_by('-id')
+
+
+class LEditViews(SuccessMessageMixin, UpdateView):
+    model = Category
+    form_class = Category
+    template_name = 'edit_student.html'
+    success_url = reverse_lazy('lmstudent')
+    success_message = 'Data was updated successfully'
+
+
+class Resturant(SuccessMessageMixin, UpdateView):
+    model = Category
+    from_class = Category
+    context_object_name = 'Book'
+    template_name = 'Request.html'
+    success_url = reverse_lazy('lrequest')
+    success_message = 'Request send Successfully'

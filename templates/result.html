@@ -221,7 +221,16 @@ ul{
               <a class="nav-link" href="{% url 'home' %}">Dashboard</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" style="margin-left: 100px" >Account</a>
+              <a action="/action_page.php" class="nav-link"  style="margin-left: 30px" onclick="opener()" >Account</a>
+<script>
+    function opener() {
+    document.getElementById("mySidepanel").style.width = "250px";
+  }
+
+function closeNav() {
+    document.getElementById("mySidepanel").style.width = "0px";
+  }
+</script>
 
             </li>
           </ul>
@@ -241,7 +250,7 @@ ul{
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="{% static 'images/c.jpg' %}" class="d-block w-100" alt="...">
+            <img src="{% static 'images/c.jpg' %}" class="d-block w-100" alt="..." height="400px">
             <div class="carousel-caption d-none d-md-block">
 
 
@@ -275,14 +284,14 @@ ul{
     </section>
 
     <!--services-->
-    <section class="about">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
+    <section class="about" style="background-color: white; margin-top: 0px">
+        <div class="container" >
+          <div class="row" style="background-color: white">
+            <div class="col-md-12" style="background-color: white">
               <h1>About Library management</h1>
             </div>
           </div>
-           <div class="row">
+           <div class="row" style="background-color: white">
             <div class="col-md-12">
               <p>A Library Management System (LMS) is software designed to manage a library's primary housekeeping functions.
                 Libraries use library services to keep track of their resource collections and relationships with their members.
@@ -372,7 +381,7 @@ ul{
 
 
                     <div class="col-md-4">
-                        <div class="card my-2"  style="display: inline; background-color: white" >
+                        <div class="card my-2"  style="display: inline; background-color: white">
                             <div class="back" style="background-color: white; height: 380px;">
                             <div class="view" style="width: 255px;">
                             <img class="image-thumbail" src="{{file.image.url}}" alt="Card image cap"  style="padding: 5px; height: 300px; width: 250px">

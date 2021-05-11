@@ -12,7 +12,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
 
-                    <a href="">Student Name : {{ object.name }} </a>
+                    <a href="">Book Category of : {{ object.name }} </a>
             </ol>
             <div class="card mb-3">
                 <div class="card-header">
@@ -23,25 +23,19 @@
 
     <div class="row">
         <div class="col-12">
-
             <form method="post">
-
                 {% csrf_token %}
-
                 <div class="alert alert-warning" role="alert">
-                  Are you sure to delete detail of book {{ object }} ?
+                  Are you sure to delete detail of book {{ object.name }} ?
                 </div>
-
                 <input type="submit" class="btn btn-danger" value="Yes, delete it" />
                 {%if user.is_superuser%}
-                <a class="btn btn-success" href="{% url 'lmbook' object.id%}">No, just I've tried the delete button</a>
-
+                <a class="btn btn-success" href="{% url 'lmstudent' object.id%}">No, just I've tried the delete button</a>
             </form>
-
-
             {% endif %}
         </div>
     </div>
+
 
 
 
@@ -51,7 +45,8 @@
     </div>
              </div>
     </div>
+
          </div>
 
-</div>
+
 {% endblock %}
