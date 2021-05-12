@@ -30,7 +30,7 @@
                 </div>
                 <input type="submit" class="btn btn-danger" value="Yes, delete it" />
                 {%if user.is_superuser%}
-                <a class="btn btn-success" href="{% url 'lmstudent' object.id%}">No, just I've tried the delete button</a>
+                <a class="btn btn-success" href="{% url 'lmstudent' object.name%}">No, just I've tried the delete button</a>
             </form>
             {% endif %}
         </div>

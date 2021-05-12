@@ -1,0 +1,164 @@
+{%  load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Account Settings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+    	body{
+    margin-top:20px;
+    color: #1a202c;
+    text-align: left;
+    background-color: #e2e8f0;    
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+
+.main-body {
+    padding: 15px;
+}
+
+.nav-link {
+    color: #4a5568;
+}
+.card {
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1rem;
+}
+
+.gutters-sm {
+    margin-right: -8px;
+    margin-left: -8px;
+}
+
+.gutters-sm>.col, .gutters-sm>[class*=col-] {
+    padding-right: 8px;
+    padding-left: 8px;
+}
+
+    </style>
+</head>
+<body>
+<div class="container">
+
+      <nav aria-label="breadcrumb" class="main-breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Account Settings</li>
+        </ol>
+      </nav>
+
+      <div class="row gutters-sm">
+        <div class="col-md-4 d-none d-md-block">
+          <div class="card">
+            <div class="card-body">
+              <nav class="nav flex-column nav-pills nav-gap-y-1">
+                <a href="#profile" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded active">
+                  <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user mr-2"></svg>Profile Information
+                </a>
+                <a href="#account" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                  <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings mr-2"></svg>Account Settings
+                </a>
+                  <a href="#security" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                  <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield mr-2"></svg>My Booked Details
+                </a>
+
+              </nav>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="card">
+  
+            <div class="card-body tab-content">
+              <div class="tab-pane active" id="profile">
+                <h6>Profile Information</h6>
+                <hr>
+                <form>
+                  
+                  <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input  class="form-control" id="fullName" aria-describedby="fullNameHelp" value="{{ request.user }}">
+                  </div>
+                
+                  <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input  class="form-control" id="email"  value="{{ user.email }}" >
+                  </div>
+
+                  <div class="form-group">
+                    <label for="studentID">Validation Date</label>
+                    <input  class="form-control" id="studentID" value="{{ user.date_joined }}" readonly>
+                  </div>
+{#                  <input type="submit" class="btn btn-primary" value="Change detail">#}
+
+{#                <input href="{% url 'accountpage' %}" type="Submit" {% if user.path == '/new' %}  value="Change Detail" {% else %} value="Update" {% endif %} class="btn btn-success"/>#}
+{#                  <button type="reset" class="btn btn-light">Reset Changes</button>#}
+                </form>
+              </div>
+              <div class="tab-pane" id="account">
+                <h6>Account Settings</h6>
+                <hr>
+                <form>
+                  <div class="form-group">
+                    <label for="studentID">Student ID</label>
+                    <input type="text" class="form-control" id="studentID" value="{{ user.email }}" readonly>
+                  </div>
+                  <hr>
+                  <div class="form-group">
+                    <label class="d-block text-danger">Delete Account</label>
+                    <p class="text-muted font-size-sm">Permanently delete the account. Can't be undone!</p>
+                  </div>
+                    <button class="btn btn-danger" type="button" ><a >Delete Account</a></button>
+                </form>
+              </div>
+                 <div class="tab-pane" id="security">
+                <h6>Details</h6>
+                <hr>
+                <form>
+                  <div class="form-group">
+
+
+                  </div>
+                </form>
+                <hr>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	
+</script>
+</body>
+</html>

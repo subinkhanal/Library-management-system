@@ -5,6 +5,95 @@
 {%  include 'status.html' %}
 
 <hr>
+{% load static %}
+<div class="container-fluid">
+<div class="row" style="padding-top: 30px">
+
+<div class="col-sm-1" style="color: red">
+</div>
+
+
+<div class="col-sm-10">
+            <div class="card mb-3">
+                <div class="card-header" style="text-align: center">
+                    <i class="fas fa-table text-primary"></i>
+                    Book booked Request details
+                </div>
+                <div class="card-body">
+
+            <div class="card mb-3">
+                <div class="card-body">
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" style=" width:100%; cellspacing:0">
+                            <thead>
+                            <tr>
+
+
+
+                                <th>Student Name</th>
+
+                                <th>Email</th>
+
+
+                                <th>Request Date</th>
+
+                                <th>Action</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+
+
+                            	{% if students %}
+                            	  {% for book in students %}
+
+
+                                <tr>
+
+
+
+
+								<td>{{book.username}}</td>
+								<td>{{book.email}}</td>
+
+                                   <td>{{book.date_joined }}</td>
+
+
+                                    <td>
+                                    <a href="{% url 'lestudent' book.id%}"><button type="button" class="btn btn-warning"> view</button></a>
+
+
+                                  <a href="{% url 'lrequests' book.id%}"><button type="button" class="btn btn-danger"> Delete</button></a>
+                                    </td>
+
+                                </tr>
+
+                                <!-- end for and if -->
+                                {% endfor %}
+                                {% endif %}
+                            </tbody>
+                        </table>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+        </div>
+    </div>
+                </div>
+
+
+
 
 
 

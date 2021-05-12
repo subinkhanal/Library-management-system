@@ -204,9 +204,7 @@ ul{
             <li class="nav-item">
               <a class="nav-link" href="#">Business</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Magazines</a>
-            </li>
+
             <li class="nav-item">
               <a class="nav-link" href="#">Novels</a>
             </li>
@@ -220,8 +218,11 @@ ul{
               <li class="nav-item">
               <a class="nav-link" href="{% url 'home' %}">Dashboard</a>
             </li>
+              <li class="nav-item">
+              <a class="nav-link" href="{% url 'accountpage' %}">Account</a>
+            </li>
             <li class="nav-item" style="margin-left: 30px; margin-top: 10px; color: white">
-            <span class="hello-msg">Hello, {{request.user}}</span>
+            <span class="hello-msg" >Hello, {{request.user}}</span>
   <span ><a  class="hello-msg" href="{% url 'logout' %}">Logout</a></span>
             </li>
           </ul>
@@ -380,9 +381,14 @@ ul{
                             </div>
                             <div class="views" style="width: 150px; margin-left: 260px; margin-top: -200px">
                                 <div class="view" style="background-color:greenyellow; border-radius: 30px; text-align: center; width: 100px;margin-left: 30px">
-                            <a href="{% url 'photo' photo.id %}" style=" color: white;width: 100px; " >View</a>
+                            <a href="{% url 'photo' photo.category.pk%}" style=" color: white;width: 100px; " >View</a>
                         </div>
-                                <button class="btn btn-outline-red btn-sm m-1" style="background-color: green;text-decoration: none; border-radius: 30px; color: white; width: 150px"><a href="{% url 'lrequest' pk=1%}">Request Book</a></button>
+
+
+
+                                <button class="btn btn-outline-red btn-sm m-1" style="background-color: green;text-decoration: none; border-radius: 30px; color: white; width: 150px"><a href="{% url 'lrequest' %}">Request Book</a></button>
+
+
                             <br>
                             </div>
 </div>

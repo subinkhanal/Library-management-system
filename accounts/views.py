@@ -7,7 +7,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -18,7 +17,7 @@ from django.views.generic import ListView, DeleteView, DetailView, UpdateView
 
 from . import models
 from .forms import CreateUserForm, Category, Student
-from .models import Category, Photo
+from .models import Category, Photo, BookRequest
 
 
 # Create your views here.
@@ -91,7 +90,7 @@ def home(request):
     return render(request, 'Index.html', {'home': home})
 
 
-@login_required(login_url='login')
+
 def dashboard(request):
     category = request.GET.get('category')
     if category is None:
@@ -268,28 +267,8 @@ def lsearch(request):
         return render(request, 'result.html', {'files': files, 'word': word})
 
 
-# @login_required
-# def StudentDelete(request, pk):
-#     obj = get_object_or_404(Students, pk=pk)
-#     obj.delete()
-#     return redirect('index')
-
-
-# def search(request):
-#     if request.method == 'POST':
-#         name = request.POST.getlist('search')
-#         try:
-#             status = Category.objects.filter(bookname__icontains=name)
-#             # Add_prod class contains a column called 'bookname'
-#         except Category.DoesNotExist:
-#             status = None
-#         return render(request, "searchpage.html", {"books": status})
-#     else:
-#         return render(request, "searchpage.html", {})
-
-
 # book delete
-class LDeleteView(DeleteView):
+class LDeleteView(SuccessMessageMixin, DeleteView):
     model = User
     success_url = reverse_lazy('lmbook')
     template_name = 'confirm_delete.html'
@@ -307,14 +286,6 @@ class LManageBook(LoginRequiredMixin, ListView):
         return User.objects.order_by('-id')
 
 
-# class LEditView(LoginRequiredMixin, UpdateView):
-#     model = User
-#     form_class = BookForm
-#     template_name = 'edit_book.html'
-#     success_url = reverse_lazy('lmbook')
-#     success_message = 'Data was updated successfully'
-
-
 class LEditView(SuccessMessageMixin, UpdateView):
     model = User
     form_class = CreateUserForm
@@ -326,10 +297,9 @@ class LEditView(SuccessMessageMixin, UpdateView):
 #     borrow book
 
 
-# view book
 # book delete
 
-class LDeleteViews(LoginRequiredMixin, DeleteView):
+class LDeleteViews(SuccessMessageMixin, DeleteView):
     model = Category
     template_name = 'confirm_delete_Book.html'
     success_url = reverse_lazy('lmstudent')
@@ -338,6 +308,7 @@ class LDeleteViews(LoginRequiredMixin, DeleteView):
 
 class LManageStudent(LoginRequiredMixin, ListView):
     model = Category
+    from_class = Category
     template_name = 'manage_Book.html'
     context_object_name = 'students'
     paginate_by = 10
@@ -348,16 +319,49 @@ class LManageStudent(LoginRequiredMixin, ListView):
 
 class LEditViews(SuccessMessageMixin, UpdateView):
     model = Category
-    form_class = Category
+    # form_class = Category
     template_name = 'edit_student.html'
     success_url = reverse_lazy('lmstudent')
     success_message = 'Data was updated successfully'
 
 
-class Resturant(SuccessMessageMixin, UpdateView):
-    model = Category
-    from_class = Category
-    context_object_name = 'Book'
-    template_name = 'Request.html'
-    success_url = reverse_lazy('lrequest')
-    success_message = 'Request send Successfully'
+def Resturant(request):
+    return render(request, "request.html")
+
+
+def Request(request):
+    form = BookRequest()
+    if request.method == 'POST':
+        form = BookRequest(request.POST)
+        if form.is_valid():
+            form.save()
+
+            return redirect('lrequest')
+
+    context = {'form': form}
+    return render(request, 'Request.html', context)
+
+
+@login_required(login_url='login')
+def brequest(request, pk):
+    photo = Photo.objects.get(id=pk)
+    Categories = Category.objects.get(id=pk)
+    user = User.objects.get(id=pk)
+
+    return render(request, 'Request.html', {'photo': photo, 'Categories': Categories, 'user': user})
+
+
+class LManageRequest(LoginRequiredMixin, ListView):
+    model = BookRequest
+    template_name = 'Index.html'
+    context_object_name = 'students'
+    paginate_by = 10
+
+    def get_queryset(self):
+        return BookRequest.objects.order_by('-id')
+
+
+def accountp(request):
+    form = User.objects.all()
+    booked = BookRequest.objects.all()
+    return render(request, 'accountpage.html', {'form': form, 'booked':booked})
