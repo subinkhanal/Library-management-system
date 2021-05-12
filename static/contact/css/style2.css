@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+
+
+*{
+  padding: 0;
+  margin: 0;
+}
+
+  .contact{
+    width: 50%;
+    margin: 20px auto;
+  }
+
+
+.map-text{
+    position: relative;
+    text-align: left;
+    font-size: 35px;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: rgb(19, 221, 146);
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+
+
+ #map-container{
+   margin: 50px auto;
+   text-align: center ;
+   width: 80%;
+ }
+
+#maps{
+  width: 100%;
+  height:450px; 
+  display: inline-block;
+}
+
+.contact-info{
+  font-family: 'Noto Sans JP', sans-serif;
+  letter-spacing: 2px;
+  color: rgb(255, 255, 255);
+  height: 100%;
+  width: 50%;
+  margin:5px auto 5px;
+  background-image: linear-gradient(to right bottom, #08a7d7, #0091e3, #0077e8, #3554de, #7b06c0);
+  box-shadow: 2px 2px 7px #000000;
+
+  border-color: transparent;
+}
+
+.sub-icon{
+  padding: 5px;
+  list-style-type: none;
+}
+
+.main-info{
+  font-weight: bold;
+  padding: 20px;
+  font-size: 16pt;
+}
+.infos{
+  padding: 20px;
+  padding-top: 0;
+}
+
+.infos ul li{
+  padding: 10px;
+}
+.infos ul li i{
+  padding-right: 20px;
+}
+#active-crumb{
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+}
+.breadcrumb-item a{
+  text-decoration: none;
+  color:#181d22;
+}
+
+#field-name{
+  color: black;
+  font-weight: bold;
+}
+#msg-sub{
+  background-image: linear-gradient(to right bottom, #08a7d7, #0091e3, #0077e8, #3554de, #7b06c0);
+  color: white;
+  font-weight: bold;
+}
+
+@media screen and (max-width:1048px){
+  .contact-info{
+    width: 70%;
+  }
+  .contact{
+    width: 70%;
+  }
+
+}
+
+@media screen and (max-width:674px){
+  .contact{
+    width: 90%;
+  }
+  .contact-info{
+    width: 90%;
+  }
+}
+
+@media screen and (max-width:337px){
+  .contact-text{
+    font-size: 30px;
+  }
+}
+
+
+
