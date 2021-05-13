@@ -9,10 +9,10 @@
               <div id="content-wrapper">
         <div class="container-fluid">
             <ol class="breadcrumb">
-                {% if books %}
+                {% if category %}
 
                 <li class="breadcrumb-item">
-                    <a href="">Book Title : {{ object.name }} </a>
+                    <a href="">Book Title : {{ category.name }} </a>
             </ol>
 
         {% endif %}
@@ -27,7 +27,7 @@
         <div class="col-12" style="width: 600px">
             <form method="post">
                 {% csrf_token %}
-                {% for field in form %}
+                {% for field in category %}
                     <div class="form-group" style="margin-left: 50%">
                         {{ field.label_tag }}
                         {{ field }}
@@ -36,7 +36,7 @@
             <div style="margin-left: 50%">
                 <input type="submit" {% if request.path == '/new' %}  value="Add" {% else %} value="Update" {% endif %} class="btn btn-success"/></div>
             {% if user.is_superuser %}
-                <a href="{% url 'lmstudent' object.name%}"><button type="button" class="btn btn-secondary">Back</button></a>
+                <a href="{% url 'lmstudent' category.id%}"><button type="button" class="btn btn-secondary">Back</button></a>
             </form>
         </div>
     </div>

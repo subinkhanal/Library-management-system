@@ -1,6 +1,6 @@
 <br>
 
-
+{% block content %}
 <div class="row">
 	<div class="col">
 		<div class="col-md">
@@ -34,7 +34,7 @@
 		<div class="col-md">
 			<div class="card text-center text-white  mb-3" id="orders-pending">
 			  	<div class="card-header">
-			  		<h5 class="card-title">Book Request</h5>
+                    <h5 class="card-title" ><a href="{% url 'home' %}" style="color: white">Book Request</a></h5>
 			  	</div>
 			  	<div class="card-body">
 			    	<h3 class="card-title">{{pending}}</h3>
@@ -46,7 +46,8 @@
 		<div class="col-md">
 			<div class="card text-center text-white  mb-3" id="orders-pending">
 			  	<div class="card-header">
-                    <h5 class="card-title"><a href="{% url 'lmstudent' %}" style="color: white">View Books Details</a></h5>
+ {% csrf_token %}
+                    <h5 class="card-title"><a href="{% url 'lmstudent' 1%}" style="color: white">View Books Details</a></h5>
 			  	</div>
 			  	<div class="card-body">
 			    	<h3 class="card-title">{{pending}}</h3>
@@ -55,3 +56,4 @@
 		</div>
 	</div>
 </div>
+{% endblock %}

@@ -38,9 +38,9 @@ urlpatterns = [
 
     #     view book
 
-    path('lmstudent/', views.LManageStudent.as_view(), name='lmstudent'),
+    path('lmstudent/<int:pk>/', views.LManageStudent.as_view(), name='lmstudent'),
     path('ldstudent/<int:pk>/', views.LDeleteViews.as_view(), name='ldstudent'),
-    path('lestudent/<int:pk>', views.LEditViews.as_view(), name='lestudent'),
+    path('lestudent/<int:pk>/', views.LEditViews.as_view(), name='lestudent'),
 
     # request
     path('request/', views.Resturant, name='lrequests'),

@@ -9,10 +9,10 @@ from django.utils import timezone
 class Category(models.Model):
     name = models.CharField(max_length=100, null=False, blank=False)
     author = models.CharField(max_length=100, null=True, blank=False)
-    quantity = models.CharField(max_length=100, null=True, blank=False)
+    quantity = models.IntegerField(max_length=100, null=True, blank=False)
 
     def __str__(self):
-        return self.name
+        return self.name, self.author
 
 
 class Photo(models.Model):
