@@ -2,6 +2,10 @@ from django.db import models
 from django.utils import timezone
 
 
+# Books ADD Database Model
+
+
+
 class Category(models.Model):
     name = models.CharField(max_length=100, null=False, blank=False)
     author = models.CharField(max_length=100, null=True, blank=False)
@@ -12,7 +16,8 @@ class Category(models.Model):
 
 
 class Photo(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
+    category = models.ForeignKey(
+        Category, on_delete=models.CASCADE, null=True, blank=True)
     image = models.ImageField(null=False, blank=True)
     description = models.TextField()
 
@@ -24,7 +29,7 @@ class Student(models.Model):
     name = models.CharField(max_length=200, null=False, blank=False)
     username = models.CharField(max_length=200, null=False, blank=False)
     email = models.CharField(max_length=200, unique=True)
-    phone = models.IntegerField(null=False, blank=False, unique=True)
+    # phone = models.IntegerField(null=False, blank=False, unique=True)
     date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):

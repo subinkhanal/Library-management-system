@@ -1,4 +1,5 @@
 import itertools
+import pkgutil
 from datetime import datetime
 from operator import not_
 
@@ -41,7 +42,7 @@ def registerPage(request):
                 user = form.cleaned_data.get('username')
                 messages.success(request, 'Account was created for ' + user)
 
-                return redirect('register')
+                return redirect('login')
 
         context = {'form': form}
         return render(request, 'register.html', context)
@@ -90,7 +91,6 @@ def home(request):
     return render(request, 'Index.html', {'home': home})
 
 
-
 def dashboard(request):
     category = request.GET.get('category')
     if category is None:
@@ -121,6 +121,12 @@ def viewPhoto(request, pk):
     Categories = Category.objects.get(id=pk)
     return render(request, 'photo.html', {'photo': photo, 'Categories': Categories})
 
+@login_required(login_url='login')
+def resultPhoto(request, pk):
+    photo = Photo.objects.get(id=pk)
+    Categories = Category.objects.get(id=pk)
+    return render(request, 'result.html', {'photo': photo, 'Categories': Categories})
+
 
 @user_passes_test(user_is_superuser)
 def addPhoto(request):
@@ -137,12 +143,16 @@ def addPhoto(request):
         else:
             category = None
 
+            catagory = Category.objects.all()
+            catagory.save()
+
         for image in images:
             photo = Photo.objects.create(
                 category=category,
                 description=data['description'],
                 image=image,
             )
+            photo.save()
 
         return redirect('gallery')
 
@@ -254,7 +264,7 @@ def lsearch(request):
         files = res
 
         page = request.GET.get('page', 1)
-        paginator = Paginator(files, 10)
+        paginator = Paginator(files, 20)
         try:
             files = paginator.page(page)
         except PageNotAnInteger:
@@ -264,7 +274,7 @@ def lsearch(request):
 
         if files:
             return render(request, 'result.html', {'files': files, 'word': word})
-        return render(request, 'result.html', {'files': files, 'word': word})
+    return render(request, 'result.html', {'files': files, 'word': word})
 
 
 # book delete
@@ -319,7 +329,7 @@ class LManageStudent(LoginRequiredMixin, ListView):
 
 class LEditViews(SuccessMessageMixin, UpdateView):
     model = Category
-    # form_class = Category
+    form_class = Category
     template_name = 'edit_student.html'
     success_url = reverse_lazy('lmstudent')
     success_message = 'Data was updated successfully'
@@ -330,9 +340,9 @@ def Resturant(request):
 
 
 def Request(request):
-    form = BookRequest()
+    form = Student
     if request.method == 'POST':
-        form = BookRequest(request.POST)
+        form = Student(request.POST)
         if form.is_valid():
             form.save()
 
@@ -345,23 +355,81 @@ def Request(request):
 @login_required(login_url='login')
 def brequest(request, pk):
     photo = Photo.objects.get(id=pk)
-    Categories = Category.objects.get(id=pk)
+    Categories = Student.objects.get(id=pk)
     user = User.objects.get(id=pk)
 
     return render(request, 'Request.html', {'photo': photo, 'Categories': Categories, 'user': user})
 
 
 class LManageRequest(LoginRequiredMixin, ListView):
-    model = BookRequest
+    model = Student
+    from_class = Students
     template_name = 'Index.html'
-    context_object_name = 'students'
+    context_object_name = 'requests'
     paginate_by = 10
 
     def get_queryset(self):
-        return BookRequest.objects.order_by('-id')
+        return Category.objects.order_by('-id')
 
 
 def accountp(request):
     form = User.objects.all()
+    booked = User.objects.all()
+    return render(request, 'accountpage.html', {'form': form, 'booked': booked})
+
+
+def reqquest(request):
+    Catagories = Student.objects.all()
+
+    if request.method == 'POST':
+        return redirect('dashboard')
+
+    context = {'categories': Catagories}
+    return render(request, 'Request.html', context)
+
+
+# def index(request):
+#     Catagories = Student.objects.all()
+#
+#     return render(request, 'Index.html', {'categories': Catagories})
+
+
+def Contact(request):
+    form = User.objects.all()
     booked = BookRequest.objects.all()
-    return render(request, 'accountpage.html', {'form': form, 'booked':booked})
+    catagory = Category.objects.all()
+    return render(request, 'Contact.html', {'form': form, 'booked': booked, 'catagory': catagory})
+
+
+class RDeleteViews(SuccessMessageMixin, DeleteView):
+    model = BookRequest
+    template_name = 'delete_request.html'
+    success_url = reverse_lazy('dashboards')
+    success_message = 'Data was deleted successfully'
+
+
+# def requestPage(request):
+#         forms = CreateUserForm()
+#         if request.method == 'POST':
+#             forms = CreateUserForm(request.POST)
+#             if forms.is_valid():
+#                 forms.save()
+#                 user = forms.cleaned_data.get('username')
+#                 messages.success(request, 'successfully booked  ' + user + 'books')
+#
+#                 return redirect('lrequest')
+#
+#         context = {'form': forms}
+#         return render(request, 'Request.html', context)
+
+
+def requestt(request):
+    Catagories = Student.objects.all()
+
+    if request.method == 'POST':
+        data = request.POST
+
+        return redirect('lrequest', data)
+
+    context = {'categories': Catagories}
+    return render(request, 'Request.html', context)

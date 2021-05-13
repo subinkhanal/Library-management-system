@@ -28,7 +28,7 @@ class Photo(forms.ModelForm):
 class Student(forms.ModelForm):
     class Meta:
         model = Student
-        fields = ['name', 'username', 'email', 'phone', 'date']
+        fields = ['name', 'username', 'email', 'date']
 
 
 class BookRequest(forms.ModelForm):

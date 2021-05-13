@@ -199,7 +199,7 @@ ul{
               <a class="nav-link" href="#">Ebooks</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+              <a class="nav-link" href="{% url 'contact' %}">Contact</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Business</a>
@@ -365,8 +365,9 @@ ul{
   <br>
   </div>
 <br>
+    <section>
     <div class="col-md-9">
-                <div class="row" style=" background-color: slategray; width: 1350px;height: 880px">
+                <div class="row" style=" background-color: slategray; width: 1350px;height: 100%">
 
                     {% for photo in photos %}
                     <div class="col-md-4">
@@ -375,13 +376,13 @@ ul{
                             <div class="view" style="width: 255px;">
                             <img class="image-thumbail" src="{{photo.image.url}}" alt="Card image cap"  style="padding: 5px; height: 300px; width: 250px">
 
-                            <div class="card-body">
+                            <div class="card-body" style="color: white">
                                 <small>Category: {{photo.category.name}}</small>
                             </div>
                             </div>
                             <div class="views" style="width: 150px; margin-left: 260px; margin-top: -200px">
                                 <div class="view" style="background-color:greenyellow; border-radius: 30px; text-align: center; width: 100px;margin-left: 30px">
-                            <a href="{% url 'photo' photo.category.pk%}" style=" color: white;width: 100px; " >View</a>
+                            <a href="{% url 'photo' photo.pk%}" style=" color: white;width: 100px; " >View</a>
                         </div>
 
 
@@ -411,7 +412,7 @@ ul{
                 </div>
             </div>
 
-
+    </section>
   <!--footer-->
   <div id="footer">
       <div class="f">

@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
-<video loop muted autoplay playsinline class="video">
-  <source src="../static/back.mp4" type="video/mp4" />
-</video>
+<img src="../static/back.jpg" height="700px" width="1350">
 <head>
 	<title>Login</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -142,10 +140,14 @@ body{
 						</div>
 						<div class="form-group" >
 							<div class="fas">
-								<span class="myInput" aria-placeholder="enter email..."></span>
+								<span class="myInput" aria-placeholder="enter email..." ></span>
 							</div>
-							{{form.email}}
-						</div>
+                            <input style="width: 100%" required="{{form.email}}">
+
+
+
+                        </div>
+
 
 						<div class="form-group">
 							<div class="input-group-append">
@@ -159,10 +161,7 @@ body{
 							</div>
 							{{form.password2}}
 						</div>
-                        <div class="form-group" style="margin-top: -10px; height: 25px;">
-
-							normal user?{{form.is_staff}}
-						</div><br>
+                        <br>
                          <div class="form">
 							ValidDate{{form.date_joined}}
 						</div>

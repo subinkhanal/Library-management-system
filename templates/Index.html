@@ -5,7 +5,7 @@
 {%  include 'status.html' %}
 
 <hr>
-{% load static %}
+{#{% load static %}#}
 <div class="container-fluid">
 <div class="row" style="padding-top: 30px">
 
@@ -28,6 +28,7 @@
                         <table class="table table-bordered" id="dataTable" style=" width:100%; cellspacing:0">
                             <thead>
                             <tr>
+                                <th>Book Name</th>
 
 
 
@@ -45,33 +46,34 @@
                             <tbody>
 
 
-                            	{% if students %}
-                            	  {% for book in students %}
+{#                            	{% if requests %}#}
+                            	  {% for categorie in requests %}
 
 
                                 <tr>
+                                <td>{{ categorie.username }}</td>
 
 
 
 
-								<td>{{book.username}}</td>
-								<td>{{book.email}}</td>
+								<td>{{categorie.username}}</td>
+								<td>{{categorie.email}}</td>
 
-                                   <td>{{book.date_joined }}</td>
+                                   <td>{{categorie.date_error_message }}</td>
 
 
                                     <td>
-                                    <a href="{% url 'lestudent' book.id%}"><button type="button" class="btn btn-warning"> view</button></a>
+                                    <a href="{% url 'dashboards' categorie.id%}"><button type="button" class="btn btn-warning"> view</button></a>
 
 
-                                  <a href="{% url 'lrequests' book.id%}"><button type="button" class="btn btn-danger"> Delete</button></a>
+                                  <a href="{% url 'dashboards' categorie.id%}"><button type="button" class="btn btn-danger"> Delete</button></a>
                                     </td>
 
                                 </tr>
 
                                 <!-- end for and if -->
                                 {% endfor %}
-                                {% endif %}
+{#                                {% endif %}#}
                             </tbody>
                         </table>
 
