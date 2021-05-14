@@ -29,7 +29,7 @@
                   Are you sure to delete detail of book {{ object.name }} ?
                 </div>
                 <input type="submit" class="btn btn-danger" value="Yes, delete it" />
-                {%if user.is_superuser%}
+{%if user.is_superuser%}
                 <a class="btn btn-success" href="{% url 'lmstudent' object.id%}">No, just I've tried the delete button</a>
             </form>
             {% endif %}

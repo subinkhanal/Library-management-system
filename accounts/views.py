@@ -32,7 +32,7 @@ def user_is_superuser(user):
 
 def registerPage(request):
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect('dashboard')
     else:
         form = CreateUserForm()
         if request.method == 'POST':
@@ -121,16 +121,11 @@ def viewPhoto(request, pk):
     Categories = Category.objects.get(id=pk)
     return render(request, 'photo.html', {'photo': photo, 'Categories': Categories})
 
-@login_required(login_url='login')
-def resultPhoto(request, pk):
-    photo = Photo.objects.get(id=pk)
-    Categories = Category.objects.get(id=pk)
-    return render(request, 'result.html', {'photo': photo, 'Categories': Categories})
-
 
 @user_passes_test(user_is_superuser)
 def addPhoto(request):
     Catagories = Category.objects.all()
+
 
     if request.method == 'POST':
         data = request.POST
@@ -153,128 +148,13 @@ def addPhoto(request):
                 image=image,
             )
             photo.save()
-
         return redirect('gallery')
 
-    context = {'categories': Catagories}
+    context = {'categories': Catagories, 'PPhoto': Photo}
     return render(request, 'add.html', context)
 
 
 # next
-
-
-def searchpage(request):
-    if request.method == 'GET':
-        search = request.GET.get('search')
-        post = Category.objects.all().filter(author=search)
-        return render(request, 'searchpage.html', {'post': post})
-
-
-# book search
-
-@login_required
-def usearch(request):
-    query = request.GET['query']
-    print(type(query))
-
-    # data = query.split()
-    data = query
-    print(len(data))
-    if (len(data) == 0):
-        return redirect('dashboard')
-    else:
-        a = data
-
-        # Searching for It
-        qs5 = models.Category.objects.filter(name__iexact=a).distinct()
-        qs6 = models.Category.objects.filter(name__exact=a).distinct()
-        qs7 = models.Category.objects.all().filter(name__contains=a)
-        qs8 = models.Category.objects.select_related().filter(id__contains=a).distinct()
-        qs9 = models.Category.objects.filter(name__startswith=a).distinct()
-        qs10 = models.Category.objects.filter(name__endswith=a).distinct()
-        qs11 = models.Category.objects.filter(name__istartswith=a).distinct()
-        qs12 = models.Category.objects.all().filter(name__icontains=a)
-        qs13 = models.Category.objects.filter(name__iendswith=a).distinct()
-
-        files = itertools.chain(qs5, qs6, qs7, qs8, qs9, qs10, qs11, qs12, qs13)
-
-        res = []
-        for i in files:
-            if i not in res:
-                res.append(i)
-
-        # word variable will be shown in html when user click on search button
-        word = "Searched Result :"
-        print("Result")
-
-        print(res)
-        files = res
-
-        page = request.GET.get('page', 1)
-        paginator = Paginator(files, 10)
-        try:
-            files = paginator.page(page)
-        except PageNotAnInteger:
-            files = paginator.page(1)
-        except EmptyPage:
-            files = paginator.page(paginator.num_pages)
-
-        if files:
-            return render(request, 'result.html', {'files': files, 'word': word})
-        return render(request, 'result.html', {'files': files, 'word': word})
-
-
-@login_required
-def lsearch(request):
-    query = request.GET['query']
-    print(type(query))
-
-    # data = query.split()
-    data = query
-    print(len(data))
-    if (len(data) == 0):
-        return redirect('dashboard')
-    else:
-        a = data
-
-        # Searching for It
-        qs5 = models.Category.objects.filter(name__iexact=a).distinct()
-        qs6 = models.Category.objects.filter(name__exact=a).distinct()
-
-        qs7 = models.Category.objects.all().filter(name__contains=a)
-        qs8 = models.Category.objects.select_related().filter(id__contains=a).distinct()
-        qs9 = models.Category.objects.filter(name__startswith=a).distinct()
-        qs10 = models.Category.objects.filter(name__endswith=a).distinct()
-        qs11 = models.Category.objects.filter(name__istartswith=a).distinct()
-        qs12 = models.Category.objects.all().filter(name__icontains=a)
-        qs13 = models.Category.objects.filter(name__iendswith=a).distinct()
-
-        files = itertools.chain(qs5, qs6, qs7, qs8, qs9, qs10, qs11, qs12, qs13)
-
-        res = []
-        for i in files:
-            if i not in res:
-                res.append(i)
-
-        # word variable will be shown in html when user click on search button
-        word = "Searched Result :"
-        print("Result")
-
-        print(res)
-        files = res
-
-        page = request.GET.get('page', 1)
-        paginator = Paginator(files, 20)
-        try:
-            files = paginator.page(page)
-        except PageNotAnInteger:
-            files = paginator.page(1)
-        except EmptyPage:
-            files = paginator.page(paginator.num_pages)
-
-        if files:
-            return render(request, 'result.html', {'files': files, 'word': word})
-    return render(request, 'result.html', {'files': files, 'word': word})
 
 
 # book delete
@@ -290,7 +170,7 @@ class LManageBook(LoginRequiredMixin, ListView):
     form_class = CreateUserForm
     template_name = 'manage_Student.html'
     context_object_name = 'books'
-    paginate_by = 6
+    paginate_by = 10
 
     def get_queryset(self):
         return User.objects.order_by('-id')
@@ -335,7 +215,7 @@ class LEditViews(SuccessMessageMixin, UpdateView):
     success_message = 'Data was updated successfully'
 
 
-def Resturant(request):
+def Requeest(request):
     return render(request, "request.html")
 
 
@@ -352,15 +232,20 @@ def Request(request):
     return render(request, 'Request.html', context)
 
 
-@login_required(login_url='login')
-def brequest(request, pk):
-    photo = Photo.objects.get(id=pk)
-    Categories = Student.objects.get(id=pk)
-    user = User.objects.get(id=pk)
-
-    return render(request, 'Request.html', {'photo': photo, 'Categories': Categories, 'user': user})
+def accountp(request):
+    form = User.objects.all()
+    booked = User.objects.all()
+    return render(request, 'accountpage.html', {'form': form, 'booked': booked})
 
 
+# @login_required(login_url='login')
+# def brequest(request, pk):
+#     photo = Photo.objects.get(category__name=pk)
+#     Categorey = Category.objects.get(id=pk)
+#     Catagories = Student.objects.get(id=pk)
+#     return render(request, 'Request.html', {'photo': photo, 'Categorey': Categorey, 'Catagories': Catagories})
+
+# Requestbook form
 class LManageRequest(LoginRequiredMixin, ListView):
     model = Student
     from_class = Students
@@ -371,21 +256,24 @@ class LManageRequest(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Category.objects.order_by('-id')
 
-
-def accountp(request):
-    form = User.objects.all()
-    booked = User.objects.all()
-    return render(request, 'accountpage.html', {'form': form, 'booked': booked})
+    # delete my account
 
 
-def reqquest(request):
-    Catagories = Student.objects.all()
+class LDeletemeView(SuccessMessageMixin, DeleteView):
+    model = User
+    success_url = reverse_lazy('accountpage')
+    template_name = 'confirm_delete.html'
+    success_message = 'Data was deleted successfully'
 
-    if request.method == 'POST':
-        return redirect('dashboard')
 
-    context = {'categories': Catagories}
-    return render(request, 'Request.html', context)
+# def reqquest(request):
+#     Catagories = Student.objects.all()
+#
+#     if request.method == 'POST':
+#         return redirect('dashboard')
+#
+#     context = {'categories': Catagories}
+#     return render(request, 'Request.html', context)
 
 
 # def index(request):
@@ -400,18 +288,17 @@ def Contact(request):
     catagory = Category.objects.all()
     return render(request, 'Contact.html', {'form': form, 'booked': booked, 'catagory': catagory})
 
-
+# Delete Book request
 class RDeleteViews(SuccessMessageMixin, DeleteView):
     model = BookRequest
     template_name = 'delete_request.html'
     success_url = reverse_lazy('dashboards')
     success_message = 'Data was deleted successfully'
 
-
 # def requestPage(request):
-#         forms = CreateUserForm()
+#         forms = Student()
 #         if request.method == 'POST':
-#             forms = CreateUserForm(request.POST)
+#             forms = Student(request.POST)
 #             if forms.is_valid():
 #                 forms.save()
 #                 user = forms.cleaned_data.get('username')
@@ -423,13 +310,13 @@ class RDeleteViews(SuccessMessageMixin, DeleteView):
 #         return render(request, 'Request.html', context)
 
 
-def requestt(request):
-    Catagories = Student.objects.all()
-
-    if request.method == 'POST':
-        data = request.POST
-
-        return redirect('lrequest', data)
-
-    context = {'categories': Catagories}
-    return render(request, 'Request.html', context)
+# def requestt(request):
+#     Catagories = Student.objects.all()
+#
+#     if request.method == 'POST':
+#         data = request.POST
+#
+#         return redirect('lrequest', data)
+#
+#     context = {'categories': Catagories}
+#     return render(request, 'Request.html', context)

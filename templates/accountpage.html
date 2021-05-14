@@ -132,7 +132,7 @@ input[type=number]::-webkit-outer-spin-button {
                     <label class="d-block text-danger">Delete Account</label>
                     <p class="text-muted font-size-sm">Permanently delete the account. Can't be undone!</p>
                   </div>
-                    <button class="btn btn-danger" type="button" ><a >Delete Account</a></button>
+                    <button class="btn btn-danger" type="button"   ><a href="{% url 'accountpages' request.user%}">Delete Account</a></button>
                 </form>
               </div>
                  <div class="tab-pane" id="security">

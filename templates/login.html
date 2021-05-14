@@ -20,7 +20,7 @@
 }
 
 body {
-	background: #f6f5f7;
+	background: #ffffff;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -46,17 +46,10 @@ span {
 	font-size: 12px;
 }
 
-a {
-	color: greenyellow;
-	font-size: 14px;
-	text-decoration: none;
-	margin: 15px 0;
-}
 
-button {
-	border-radius: 20px;
+.sign-btn {
 	border: none;
-	background-color:greenyellow;
+	background-color:rgb(255, 255, 255);
 	color: #fff;
 	font-size: 12px;
 	font-weight: bold;
@@ -68,23 +61,18 @@ button {
     -moz-box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
     box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
 }
-button:hover
+.sign-btn:hover
 {
     background: linear-gradient(45deg, #00d4ff, #b726ff);
 }
-
-button:active {
-	transform: scale(0.95);
+.sign-btn:hover #SignUp{
+	color: white;
 }
 
-button:focus {
-	outline: none;
+#SignUp{
+	text-decoration: none;
 }
 
-button.ghost {
-	background-color: transparent;
-	border-color: #FFFFFF;
-}
 
 form {
     position: relative;
@@ -240,8 +228,7 @@ input {
                      </i>
                      <i class="fas fa-lock">
                      <input type="password" placeholder="Password..." name="password" class="form-control">
-                     </i>
-                     <a href="#">Forget Password?</a>
+                     </i><br>
                      <input class="btn login_btn" type="submit" value="Login">
                  </form>
              </div>
@@ -256,9 +243,9 @@ input {
 					<p id="messages">{{message}}</p>
 				{% endfor %}
                      <div class="Overlay-Panel Overlay-right">
-                         <h1>HELLO!!</h1>
-                         <p style="color: greenyellow; font-size: 20px">Don't have an account?</p>
-                         <button style="color: greenyellow">
+                         <h1 style="color: white;">HELLO!!</h1>
+                         <p style=" color: white; font-size: 20px">Don't have an account?</p>
+                         <button class="sign-btn">
 
                          <a class="myRightCtn" id="SignUp"  href="{% url 'register' %}" style="font-size: 30px;  ">Sign up</a>
                          </button>

@@ -196,7 +196,7 @@ ul{
               <a class="nav-link" href="#">Home </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Ebooks</a>
+              <a class="nav-link" href="#PostBook">Books</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'contact' %}">Contact</a>
@@ -324,42 +324,24 @@ ul{
     <script src="{% static 'css/bootstrap.bundle.min.js' %}"></script>
 
   <!-- slider section -->
-  <div class="Center">
-      <h1 style="color: white">All Categories Books
+  <div class="Center" style="height: 200px">
+      <h1 style="color: white" id="PostBook">All Categories Books
      </h1>
-      <h3 style="color: white">Herald Library</h3>
-{#<form  action="{% url 'searchbar' %}" method="GET" value="{{request.GET.q}}" style="float: right; margin-right: -0px; width: 450px; margin-top: -80px">#}
-{#      <input name="query" type="text" placeholder="Search here.." style="height: 50px; width: 300px" >#}
-{#      <button type="submit" name="button" style="width: 60px; height: 50px">Submit</button>#}
-{#    </form>#}
+      <h3 style="color: white" >Herald Library</h3>
 
-  <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" action="{% url 'lsearch' %}" >
-        <div class="input-group" style="margin-left: 1100px; margin-top: -70px">
-            <input type="text" class="form-control" name="query" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="submit">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </div>
-    </form>
-{#  <form name="myform" method="POST" action="{% url 'search' %}">#}
-{#    {% csrf_token %}#}
-{#    <input type="text" name="search" placeholder="Search" />#}
-{#</form>#}
-
-<div class="menu" style=" margin-left: 100px;width: 200px; margin-top: -50px; height: 50px">
+<h4 style="color: white; margin-left: 100px;margin-top: -80px">Book Categories</h4>
+<div class="menu" style=" margin-left: 100px;width: 250px; margin-top: 0px; height: 130px;">
 
                         <li class="col-md-10">
                             <a href="{% url 'dashboard' %}" style="color:black;">All</a>
                         </li>
-                        {% for category in Catagories %}
-                        <li class=" col-md-10">
-                        <br>
-                            <a href="{% url 'dashboard' %}?category={{category.name}}" size="40px"><br>
+                       {% for category in categories %}
+                        <li class=" row-md-10" style="display: inline-block; padding: 3px;">
+
+                           <button style="background-color: black; color: white"> <a href="{% url 'dashboard' %}?category={{category.name}}" size="20px">
                                 {{category.name}}
-                            </a>
-                        </li>
+                            </a></button></li>
+
                         {% endfor %}
 </div>
   <br>
