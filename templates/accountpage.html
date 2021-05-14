@@ -63,7 +63,7 @@ input[type=number]::-webkit-outer-spin-button {
 </head>
 <body>
 <div class="container">
-
+      <!-- Breadcrumb in accounts page -->
       <nav aria-label="breadcrumb" class="main-breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
@@ -74,6 +74,7 @@ input[type=number]::-webkit-outer-spin-button {
       <div class="row gutters-sm">
         <div class="col-md-4 d-none d-md-block">
           <div class="card">
+            <!-- Side nav bar for profile information, account settings and my books details -->
             <div class="card-body">
               <nav class="nav flex-column nav-pills nav-gap-y-1">
                 <a href="#profile" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded active">
@@ -98,7 +99,7 @@ input[type=number]::-webkit-outer-spin-button {
                 <h6>Profile Information</h6>
                 <hr>
                 <form>
-                  
+                  <!-- This is the readonly form where the user can view their profile information -->
                   <div class="form-group">
                     <label for="fullName">Full Name</label>
                     <input  class="form-control" id="fullName" aria-describedby="fullNameHelp" value="{{ request.user }}" readonly>
@@ -123,11 +124,13 @@ input[type=number]::-webkit-outer-spin-button {
                 <h6>Account Settings</h6>
                 <hr>
                 <form>
+                  <!-- This is the form for account settings where user can delete their account -->
                   <div class="form-group">
                     <label for="studentID">Student ID</label>
                     <input type="text" class="form-control" id="studentID" value="{{ user.email }}" readonly>
                   </div>
                   <hr>
+                  <!-- Delete account button -->
                   <div class="form-group">
                     <label class="d-block text-danger">Delete Account</label>
                     <p class="text-muted font-size-sm">Permanently delete the account. Can't be undone!</p>

@@ -40,23 +40,29 @@
   }
 
 </style>
-
+ <!-- This is the navbar that is placed in the Admin Dashboard -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="top-nav">
+ 
+  <!-- This image is used for the LMS logo -->
  <img src="{% static 'images/bluelibe.png' %}">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+  <!-- The two lists in the below div are used as dashboard and back to home buttons -->
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active" id="dash-b">
         <a class="nav-link" href="{% url 'home' %}">Dashboard</a>
       </li>
+      
         <li class="nav-item" id="home-b">
         <a class="nav-link" href="{% url 'dashboard' %}">Go to home</a>
+
       </li>
     </ul>
   </div>
 
+  <!-- These are the side divs that show the username of the admin and also the button to logout of the account -->
   <span class="hello-msg">Hello, {{request.user}}</span>
   <span class="logout-sp"><a  class="hello-msg" href="{% url 'logout' %}">Logout</a></span>
 
