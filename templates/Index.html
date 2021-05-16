@@ -47,26 +47,26 @@
 
 
 {#                            	{% if requests %}#}
-                            	  {% for categorie in requests %}
+                            	  {% for data in dataset %}
 
 
                                 <tr>
-                                <td>{{ categorie.username }}</td>
+                                <td>{{ data.name }}</td>
 
 
 
 
-								<td>{{categorie.username}}</td>
-								<td>{{categorie.email}}</td>
+								<td>{{data.username}}</td>
+								<td>{{data.email}}</td>
 
-                                   <td>{{categorie.date_error_message }}</td>
+                                   <td>{{data.date_error_message }}</td>
 
 
                                     <td>
-                                    <a href="{% url 'dashboards' categorie.id%}"><button type="button" class="btn btn-warning"> view</button></a>
+                                    <a href="{% url 'dashboards' data.id%}"><button type="button" class="btn btn-warning"> view</button></a>
 
 
-                                  <a href="{% url 'dashboards' categorie.id%}"><button type="button" class="btn btn-danger"> Delete</button></a>
+                                  <a href="{% url 'dashboards' data.id%}"><button type="button" class="btn btn-danger"> Delete</button></a>
                                     </td>
 
                                 </tr>

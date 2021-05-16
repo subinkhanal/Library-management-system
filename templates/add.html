@@ -70,6 +70,11 @@
 </head>
 
 <body class="m-5">
+{%  extends 'main.html' %}
+
+{% block content %}
+
+{%  include 'status.html' %}
     <div class="container">
                 <a href="{% url 'home' %}" class="btn btn-dark my-3">Go Back</a>
                 <div class="card">
@@ -127,7 +132,7 @@
                     </form>
                 </div>
             </div>
-    </div>
+{% endblock %}
 </body>
 
 </html>

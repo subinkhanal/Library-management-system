@@ -126,7 +126,6 @@ def viewPhoto(request, pk):
 def addPhoto(request):
     Catagories = Category.objects.all()
 
-
     if request.method == 'POST':
         data = request.POST
         images = request.FILES.getlist('images')
@@ -219,17 +218,17 @@ def Requeest(request):
     return render(request, "request.html")
 
 
-def Request(request):
-    form = Student
-    if request.method == 'POST':
-        form = Student(request.POST)
-        if form.is_valid():
-            form.save()
-
-            return redirect('lrequest')
-
-    context = {'form': form}
-    return render(request, 'Request.html', context)
+# def Request(request):
+#     form = Student
+#     if request.method == 'POST':
+#         form = Student(request.POST)
+#         if form.is_valid():
+#             form.save()
+#
+#             return redirect('lrequest')
+#
+#     context = {'form': form}
+#     return render(request, 'Request.html', context)
 
 
 def accountp(request):
@@ -288,12 +287,14 @@ def Contact(request):
     catagory = Category.objects.all()
     return render(request, 'Contact.html', {'form': form, 'booked': booked, 'catagory': catagory})
 
+
 # Delete Book request
 class RDeleteViews(SuccessMessageMixin, DeleteView):
     model = BookRequest
     template_name = 'delete_request.html'
     success_url = reverse_lazy('dashboards')
     success_message = 'Data was deleted successfully'
+
 
 # def requestPage(request):
 #         forms = Student()
@@ -320,3 +321,31 @@ class RDeleteViews(SuccessMessageMixin, DeleteView):
 #
 #     context = {'categories': Catagories}
 #     return render(request, 'Request.html', context)
+
+
+
+
+
+def create_request_view(request):
+    Data = Student.objects.all()
+
+    if request.method == 'POST':
+        data = request.POST
+
+        for image in data:
+            photo = Photo.objects.create(
+                name=data,
+                username=data['username'],
+                email=image,
+                date=image,
+            )
+            photo.save()
+        return redirect('dashboard')
+
+    context = {'student': Data, 'PPhoto': Photo}
+    return render(request, 'Request.html', context)
+
+def detail_view(request):
+    context = {"dataset": Student.objects.all()}
+
+    return render(request, "Index.html", context)

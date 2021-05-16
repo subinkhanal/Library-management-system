@@ -87,6 +87,7 @@ DATABASES = {
         'PASSWORD': 'subin123',
         'HOST': 'localhost',
 
+
     }
 }
 

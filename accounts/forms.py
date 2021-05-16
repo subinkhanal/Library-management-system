@@ -25,7 +25,7 @@ class Photo(forms.ModelForm):
         fields = ['category', 'image', 'description']
 
 
-class Student(forms.ModelForm):
+class Students(forms.ModelForm):
     class Meta:
         model = Student
         fields = ['name', 'username', 'email', 'date']

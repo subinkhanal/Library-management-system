@@ -147,11 +147,13 @@ body{
 
 							{{form.username}}
 						</div>
-						<div class="form-group">
-							<div class="fas">
-								<span class="myInput" aria-placeholder="enter email..." style="display: none;"></span>
-							</div>
-                            <input required="{{form.email}}">
+						<div class="form-group" >
+
+
+{#								<span class="myInput" aria-placeholder="enter email..." style="display: none;"></span>#}
+                           <input required {{form.email}}>
+
+
 
 
 
@@ -172,8 +174,9 @@ body{
 							{{form.password2}}
 						</div>
                         <br>
-                         <div class="form">
-							ValidDate{{form.date_joined}}
+                         <div class="form" >
+							 Register date<input readonly
+                            {{form.date_joined}}>
 						</div>
 
 

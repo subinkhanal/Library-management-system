@@ -7,8 +7,8 @@ from django.utils import timezone
 
 class Category(models.Model):
     name = models.CharField(max_length=100, null=False, blank=False)
-    author = models.CharField(max_length=100, null=True, blank=False)
-    quantity = models.IntegerField(max_length=100, null=True, blank=False)
+    author = models.CharField(max_length=100, null=False, blank=False)
+    quantity = models.CharField(max_length=100, null=False, blank=False)
 
     def __str__(self):
         return self.name, self.author
@@ -16,12 +16,12 @@ class Category(models.Model):
 
 class Photo(models.Model):
     category = models.ForeignKey(
-        Category, on_delete=models.CASCADE, null=True, blank=True)
+        Category, on_delete=models.CASCADE, null=False, blank=True)
     image = models.ImageField(null=False, blank=True)
     description = models.TextField()
 
     def __str__(self):
-        return self.description
+        return self.description, self.category
 
 
 class Student(models.Model):
@@ -32,6 +32,9 @@ class Student(models.Model):
 
     def __str__(self):
         return self.name
+
+    def __int__(self):
+        return self.date
 
 
 class BookRequest(models.Model):

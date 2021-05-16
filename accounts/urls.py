@@ -3,6 +3,7 @@ from django.urls import path
 
 from . import views
 
+
 urlpatterns = [
 
     # user login process path
@@ -39,7 +40,8 @@ urlpatterns = [
 
     # request
     path('request/', views.Requeest, name='lrequests'),
-    path('request/', views.Request, name='lrequest'),
+    # path('request/', views.Request, name='lrequest'),
     path('rhome/<int:pk>/', views.RDeleteViews.as_view(), name='dashboards'),
+    path('request/', views.create_request_view, name='lrequest'),
 
 ]
