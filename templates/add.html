@@ -1,101 +1,3 @@
-{#<!DOCTYPE html>#}
-{#<html >#}
-{##}
-{#<head>#}
-{#    <meta charset='utf-8'>#}
-{#    <meta http-equiv='X-UA-Compatible' content='IE=edge'>#}
-{#    <title>Add Photo</title>#}
-{#    <meta name='viewport' content='width=device-width, initial-scale=1'>#}
-{##}
-{#    <!-- CSS only -->#}
-{#    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"#}
-{#        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">#}
-{#<style>#}
-{#    .container1{#}
-{#        background-color: #f7ba5b;#}
-{#        width: 350px;#}
-{#        height: 300px;#}
-{#        margin-left: 350px;#}
-{#        margin-top: -309px;#}
-{##}
-{#    }#}
-{#    .container2{#}
-{#        background-color: #f7ba5b;#}
-{#        width: 350px;#}
-{#        height: 300px;#}
-{#    }#}
-{#    .card{#}
-{#        height: 300px;#}
-{#        width: 700px;#}
-{##}
-{##}
-{#    }#}
-{#    .col-md-4{#}
-{#        margin-right: 100px;#}
-{#    }#}
-{##}
-{#</style>#}
-{#</head>#}
-{##}
-{#<body class="m-5">#}
-{#    <div class="container">#}
-{#        <div class="row justify-content-center">#}
-{#            <div class="col-md-4">#}
-{#                <a href="{% url 'home' %}" class="btn btn-dark my-3">Go Back</a>#}
-{#                <div class="card">#}
-{#                    <form method='POST' action="" enctype="multipart/form-data">#}
-{#                        {% csrf_token %}#}
-{#                        <div class="container2">#}
-{#                            <div class="form-group m-2">#}
-{#                                <label>Book Name</label>#}
-{#                                <input required name="book name" type="text" class="form-control">#}
-{#                            </div>#}
-{#                            <br>#}
-{#                            <div class="form-group m-2">#}
-{#                                <label>Book Author</label>#}
-{#                                <input required name="name" type="text"  class="form-control">#}
-{#                            </div>#}
-{#                            <br>#}
-{#                            <div class="form-group m-2">#}
-{#                                <label>Book Quantity</label>#}
-{#                                <input required name="quantity" type="text" class="form-control">#}
-{#                            </div>#}
-{#                        </div>#}
-{#                        <div class="container1">#}
-{#                            <div class="form-group m-2">#}
-{#                                <label>Description</label>#}
-{#                                <input required name="description" type="text" class="form-control">#}
-{#                            </div>#}
-{#                        <br>#}
-{##}
-{#                            <div class="form-group m-2">#}
-{#                                <label>Select a category</label>#}
-{#                                <select name="category" class="form-control">#}
-{#                                    <option value='none'>Select a category...</option>#}
-{#                                    {% for category in categories %}#}
-{#                                        <option value='{{category.id}}'>{{category.name}}</option>#}
-{#                                    {% endfor %}#}
-{#                                </select>#}
-{#                            </div>#}
-{#<br>#}
-{#                            <div class="form-group m-2">#}
-{#                                <label>Create a new category</label>#}
-{#                                <input name="category_new" type="text" class="form-control">#}
-{#                            </div>#}
-{#                        </div>#}
-{#                        <div class="form-group m-2">#}
-{#                            <label>Upload Book image</label>#}
-{#                            <input required name="images" type="file" multiple class="form-control-file">#}
-{#                        </div>#}
-{#                        <button type='submit' class="btn btn-primary m-3">Submit</button>#}
-{#                    </form>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#</body>#}
-{##}
-{#</html>#}
 
 <!DOCTYPE html>
 <html>
@@ -208,34 +110,25 @@
 </head>
 
 <body class="m-5">
+{%  extends 'main.html' %}
+
+{% block content %}
+
+{%  include 'status.html' %}
     <div class="container">
                 <a href="{% url 'home' %}" class="btn btn-dark my-3">Go Back</a>
                 <div class="card">
                     <form method='POST' action="" enctype="multipart/form-data">
                      {% csrf_token %}
                         <div class="info-container">
-                        <div class="container1">
-                            <div class="form-group m-2">
-                                <label>Book Name</label>
-                                <input required name="description" type="text" class="form-control">
-                            </div>
-                            <br>
-                            <div class="form-group m-2">
-                                <label>Book Author</label>
-                                <input required name="description" type="text"  class="form-control">
-                            </div>
-                            <br>
-                            <div class="form-group m-2">
-                                <label>Book Quantity</label>
-                                <input required name="quantity" type="number" class="form-control">
-                            </div>
-                        </div>
+                        <br>
+
                         <div class="container2">
                             <div class="form-group m-2">
                                 <label>Description</label>
                                 <input required name="description" type="text" class="form-control">
                             </div>
-                        <br>
+<br>
 
                             <div class="form-group m-2">
                                 <label>Select a category</label>
@@ -253,6 +146,23 @@
                             </div>
                         </div>
 
+                        <div class="container2">
+                            <div class="form-group m-2">
+                                <label>Book Name</label>
+                                <input required name="description" type="text" class="form-control">
+                            </div>
+                            <br>
+                            <div class="form-group m-2">
+                                <label>Book Author</label>
+                                <input required name="author" type="text"  id="name" class="form-control">
+                            </div>
+                            <br>
+                            <div class="form-group m-2">
+                                <label>Book Quantity</label>
+                                <input required name="quantity" type="number" class="form-control">
+                            </div>
+                        </div>
+
                             </div>
                         <div class="form-group m-2" style="padding-left: 2%;">
                             <label>Upload Book image</label>
@@ -262,7 +172,7 @@
                     </form>
                 </div>
             </div>
-    </div>
+{% endblock %}
 </body>
 
 </html>

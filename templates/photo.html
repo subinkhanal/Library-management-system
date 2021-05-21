@@ -25,11 +25,6 @@
   box-sizing: border-box;
 }
 
-.menu {
-  float: left;
-  width: 20%;
-  text-align: center;
-}
 
 .menu a {
   background-color: #e5e5e5;
@@ -220,84 +215,235 @@ img{
      text-decoration: none;
  }
 
-          .menu{
 
-              background: radial-gradient(#e0b784,#ffe6e7);
-              }
-          .collapse-navbar-collapse  {
-              display: inline;
+           nav{
+              position: relative;
+              border-radius: 8px;
+              font-size:0;
+              background-size: cover;
+              top: -110px;
+              left: 20px;
+              background-image: linear-gradient(to right bottom, #08a7d7, #0091e3, #0077e8, #3554de, #7b06c0);
+              margin: 30px auto;
+              width: 68%;
+              height: 60px;
+          }
+
+          nav a:hover {
+              color: white;
+              text-decoration: none;
+          }
+          nav a {
+              font-size: 15px;
+              text-transform: uppercase;
+              color: white;
+              text-decoration: none;
+              line-height: 50px;
+              position: relative;
+              z-index: 1;
+              display: inline-block;
+              text-align: center;
+          }
+          nav .animation{
+              position: absolute;
+              height: 100%;
+              top:0;
+              z-index: 0;
+              background: #0077e8;
+              color: white;
+              width:100%;
+              border-radius: 8px;
+          }
+          a:nth-child(1){
+              width: 100px;
 
           }
-.navbar-light .navbar-nav .nav-link {
-    color: #fff;
+          nav .start-home, a:nth-child(1):hover~.animation{
+              width: 100px;
+              left:0;
+          }
+          a:nth-child(2){
+              width: 110px
+          }
+          nav a:nth-child(2):hover~.animation{
+              width: 110px;
+              left:100px;
+          }
+          a:nth-child(3){
+              width: 100px
+          }
+          nav a:nth-child(3):hover~.animation{
+              width: 100px;
+              left:210px;
+          }
+          a:nth-child(4){
+              width: 100px
+          }
+          nav a:nth-child(4):hover~.animation{
+              width: 100px;
+              left:310px;
+          }
+          a:nth-child(5){
+              width: 120px;
+          }
+          nav a:nth-child(5):hover~.animation{
+              width: 120px;
+              left:410px;
+          }
+          a:nth-child(6){
+              width: 120px;
+          }
+          nav a:nth-child(6):hover~.animation{
+              width: 120px;
+              left:530px;
+          }
+          a:nth-child(7){
+              width: 110px
+          }
+          nav a:nth-child(7):hover~.animation{
+              width: 110px;
+              left:650px;
+          }
+          a:nth-child(8){
+              width: 120px;
+          }
+          nav a:nth-child(8):hover~.animation{
+              width: 120px;
+              left:770px;
+          }
+          a:nth-child(9){
+              width: 130px;
+          }
+          nav a:nth-child(9):hover~.animation{
+              width: 130px;
+              left:880px;
+          }
+          @keyframes gradient {
+      0% {
+          background-position: 0% 50%;
+      }
+      50% {
+          background-position: 100% 50%;
+      }
+      100% {
+          background-position: 0% 50%;
+      }
+  }
+.container{
+    display: inline;
+
 }
 
-.navbar-light .navbar-nav .active.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
-    color: #fff;
-    background-color: #233742;
+
+.f{
+	background-image: linear-gradient(to right bottom, #08a7d7, #0091e3, #0077e8, #3554de, #7b06c0);
+    color: #fdfdfd;
+    font-size: 20px;
+    padding: 0px 0 20px;
+    padding-top: 30px;
 }
+.f p{
+	color: #f1e7e7;
+
+}
+.f h3{
+	color: #fff;
+	margin-bottom: 20px;
+    margin-left: 30px;
+}
+.fc1 ,.fc2,.fc3,.fc4{
+	min-width: 250px;
+	margin-bottom: 20px;
+    margin-left: 30px;
+}
+.fc1{
+	flex-basis: 30%;
+}
+.fc2{
+	flex: 1;
+	text-align: center;
+}
+.fc2 img{
+	width: 180px;
+	margin-bottom: 20px;
+
+}
+.fc3,.fc4{
+	flex-basis: 12%;
+	text-align: center;
+}
+ul{
+	list-style-type: none;
+}
+.flogo{
+	margin-top: 20px;
+}
+.flogo img{
+	width: 140px;
+}
+.f hr{
+	border: none;
+	background:aliceblue;
+	height: 1px;
+	margin: 20px 0;
+}
+.copyright{
+	text-align: center;
+    margin-bottom: 30px;
+}
+#footer{
+	background: #000;
+
+}
+
+.row{
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.image-thumbail {
+            object-fit: cover;
+    width:400px;
+
+        }
+
+        .list-group-item a {
+            text-decoration: none;
+            color: black;
+        }
+        .col-md-9{
+            width:1400px;
+
+
+        }
+
+
 </style>
 </head>
 
-<body class="m-5">
-
-<section class="menu">
-    {% load static %}
-      <div class="container">
-         <nav class="navbar navbar-expand-lg navbar-light ">
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div id="logo">
-        <img src="{% static 'images/logo.png' %}" width="170px">
-      </div>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto" >
-
-            <li class="nav-item active">
-
-              <a class="nav-link" href="{% url 'dashboard' %}">Home </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Ebooks</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Business</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="#">Novels</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'gallery' %}">Gallery</a>
-            </li>
-
-              <li class="nav-item">
-              <a class="nav-link" href="{% url 'home' %}">Dashboard</a>
-            </li>
-              <li class="nav-item">
-              <a class="nav-link" href="{% url 'accountpage' %}">Account</a>
-            </li>
-            <li class="nav-item" style="margin-left: 30px; margin-top: 10px; color: white">
-            <span class="hello-msg" >Hello, {{request.user}}</span>
-  <span ><a  class="hello-msg" href="{% url 'logout' %}">Logout</a></span>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-    </section>
+<body>
+ <div id="logo">
+  <img src="{% static 'images/bluelibe.png' %}" width="120px" alt="" height="120px">
 
 
-    <div class = "card-wrapper">
+  <nav>
+      <a href="{% url 'dashboard' %}">HOME</a>
+      <a href="{% url 'dashboard' %}">Books</a>
+      <a href="{% url 'contact' %}">Contact</a>
+      <a href="{% url 'novel' %}">Novels</a>
+      <a href="{% url 'about' %}">About</a>
+      <a href="{% url 'gallery' %}">Gallery</a>
+{#      <a href="{% url 'home' %}">Dashboard</a>#}
+      <a href="{% url 'accountpage' %}">Account</a>
+      <a href="{% url 'logout' %}">LOGOUT</a>
+      <div class="animation start-home"></div>
+  </nav>
+  </div>
+
+
+    <div class = "card-wrapper" style="margin-top:-20px">
       <div class = "card">
         <!-- card left -->
         <div class = "product-imgs">
@@ -338,52 +484,64 @@ img{
       </div>
     </div>
 
-    <div class="recommendation">
-        <h2>Recommended Books</h2>
-        <br>
-
-        <div class="cards-container">
-            <a href="#">
-            <div class="cards">
-                <img src="https://covers.openlibrary.org/b/olid/OL19374060M-M.jpg" alt="">
-                <p>The works of Horace</p>
-            </div>
-            </a>
-            <a href="#">
-            <div class="cards">
-                <img src="https://covers.openlibrary.org/b/olid/OL19374060M-M.jpg" alt="">
-                <p>The works of Horace</p>
-            </div>
-            </a>
-            <a href="#">
-            <div class="cards">
-                <img src="https://covers.openlibrary.org/b/olid/OL19374060M-M.jpg" alt="">
-                <p>The works of Horace</p>
-            </div>
-            </a>
-            <a href="#">
-            <div class="cards">
-                <img src="https://covers.openlibrary.org/b/olid/OL19374060M-M.jpg" alt="">
-                <p>The works of Horace</p>
-            </div>
-            </a>
-            <a href="#">
-            <div class="cards">
-                <img src="https://covers.openlibrary.org/b/olid/OL19374060M-M.jpg" alt="">
-                <p>The works of Horace</p>
-            </div>
-            </a>
-            <a href="#">
-            <div class="cards">
-                <img src="https://covers.openlibrary.org/b/olid/OL19374060M-M.jpg" alt="">
-                <p>The works of Horace</p>
-            </div>
-            </a>
-
-        </div>
-    </div>
 
 
+  <!--footer-->
+  <div id="footer">
+      <div class="f">
+          <div class="container">
+              <div class="row">
+                  <div class="fc1">
+                      <h3>Download our App</h3>
+                      <p>Download App for Andriod and iso mobile phone.</p>
+                      <div class="flogo">
+
+                          <img src="{% static 'images/pstore.png' %}">
+                          <img src="{% static 'images/astore.png' %}">
+                      </div>
+                  </div>
+                  <div class="fc2">
+                      <img src="{% static 'images/logo.png' %}">
+                      <p>Our Purpose Is To Sustainably Make the pleasure </p>
+                  </div>
+                  <div class="fc3">
+                      <h3>Useful Link</h3>
+                      <ul>
+                          <li>Privacy Policy</li>
+                          <li>Term of use</li>
+                          <li>Return policy</li>
+                          <li>Discount Coupons</li>
+                      </ul>
+
+                  </div>
+                  <div class="fc4">
+                      <h3>Follow US</h3>
+                      <ul>
+                          <li>Facebook</li>
+                          <li>Instagram</li>
+                          <li>Twitter</li>
+                          <li>YouTube</li>
+                      </ul>
+
+                  </div>
+
+                  <hr>
+                  <p class="copyright">Copyright 2020--Libarary management </p>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div id="mySidepanel" class="sidepanel" style="display: none" >
+        <br><br>
+        <button class="closebtn" onclick="closeNav()" style="margin-bottom: -45px; height: 30px; text-align: center;">-</button>
+        <br><br>
+        <a href="#"><img src="images/profilei.png" height="18px" width="18px" alt=""> View profile</a><br><br><br>
+        <a href="#"><img src="images/settingi.png" height="18px" width="18px" alt="">Setting</a><br><br><br>
+        <a href="#"><img src="images/acti.jpg" height="18px" width="18px" alt="">Activities</a><br><br><br>
+               <a href="#"><img src="images/booked.jpg" height="18px" width="18px" alt="">My Booked Items</a><br><br><br>
+        <a href="#"><img src="images/privacy.jpg" height="18px" width="18px" alt="">Privacy & Policy</a><br><br><br>
+        <a href="#"><img src="images/logout.jpg" height="18px" width="18px" alt="">Logout Account</a><br><br><br>
+          </div>
 </body>
 
 </html>

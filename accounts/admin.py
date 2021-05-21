@@ -1,13 +1,10 @@
 from django.contrib import admin
-from django.contrib.auth.models import User
 
-from .models import Category, Photo, Student, BookRequest
+from .models import Category, Photo, Post
 
 # Register your models here.
 
-admin.site.register(Student)
 admin.site.register(Category)
 admin.site.register(Photo)
-admin.site.register(BookRequest)
-
+admin.site.register(Post)
 
