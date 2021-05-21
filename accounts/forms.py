@@ -1,6 +1,7 @@
-from django.contrib.auth.forms import UserCreationForm, SetPasswordForm, PasswordResetForm
-from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from django import forms
+from django.forms import ModelForm
+
 from .models import *
 from django.contrib.auth import get_user_model
 
@@ -25,13 +26,10 @@ class Photo(forms.ModelForm):
         fields = ['category', 'image', 'description']
 
 
-class Students(forms.ModelForm):
+class Post(ModelForm):
     class Meta:
-        model = Student
-        fields = ['name', 'username', 'email', 'date']
+        model = Post
+        fields = '__all__'
 
 
-class BookRequest(forms.ModelForm):
-    class Meta:
-        model = BookRequest
-        fields = ['name', 'username', 'email', 'date']
+

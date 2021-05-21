@@ -21,6 +21,41 @@
     margin: 0;
     font-family: 'Open Sans', sans-serif;
 }
+    * {
+  box-sizing: border-box;
+}
+
+
+.menu a {
+  background-color: #e5e5e5;
+  padding: 8px;
+  margin-top: 7px;
+  display: block;
+  width: 100%;
+  color: black;
+}
+
+.main {
+  float: left;
+  width: 60%;
+  padding: 0 20px;
+}
+
+.right {
+  background-color: #e5e5e5;
+  float: left;
+  width: 20%;
+  padding: 15px;
+  margin-top: 7px;
+  text-align: center;
+}
+
+@media only screen and (max-width: 620px) {
+  /* For mobile phones: */
+  .menu, .main, .right {
+    width: 100%;
+  }
+}
 body{
     line-height: 1.5;
 }
@@ -180,25 +215,23 @@ img{
      text-decoration: none;
  }
 
-          .menu{
 
-              background: radial-gradient(#e0b784,#ffe6e7);
-              }
-          .collapse-navbar-collapse  {
-              display: inline;
-
-          }
-nav{
+           nav{
               position: relative;
-              margin: 0px auto 0;
-              width: 1010px;
-              height: 60px;
-              background: linear-gradient(45deg, #9b00e8, #39d7ff);
               border-radius: 8px;
               font-size:0;
               background-size: cover;
               top: -110px;
-              left: 125px;
+              left: 20px;
+              background-image: linear-gradient(to right bottom, #08a7d7, #0091e3, #0077e8, #3554de, #7b06c0);
+              margin: 30px auto;
+              width: 68%;
+              height: 60px;
+          }
+
+          nav a:hover {
+              color: white;
+              text-decoration: none;
           }
           nav a {
               font-size: 15px;
@@ -216,7 +249,8 @@ nav{
               height: 100%;
               top:0;
               z-index: 0;
-              background: #0393b8;
+              background: #0077e8;
+              color: white;
               width:100%;
               border-radius: 8px;
           }
@@ -302,12 +336,11 @@ nav{
 
 
 .f{
-	background:linear-gradient(339deg
-, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-image: linear-gradient(to right bottom, #08a7d7, #0091e3, #0077e8, #3554de, #7b06c0);
     color: #fdfdfd;
     font-size: 20px;
     padding: 0px 0 20px;
-    margin-bottom: 0;
+    padding-top: 30px;
 }
 .f p{
 	color: #f1e7e7;
@@ -386,28 +419,7 @@ ul{
 
         }
 
-        .Center{
-            background: linear-gradient(159deg
-, #ee7752, #e73c7e, #23a6d5, #23d5ab);;
-            position:center;
-            font-family: Serif, cursive;
-        }
-        .Center h1{
-            margin-left: 500px;
-        }
-        .Center h3{
-            margin-left: 600px;
-        }
-        button{
-            width: 100%;
-        }
-.view{
-    background-color: #00d4ff;
-    font-size: 25px;
-   position: center;
-    width: 30%;
-    border-radius: 20px;
-}
+
 </style>
 </head>
 
@@ -416,15 +428,14 @@ ul{
   <img src="{% static 'images/bluelibe.png' %}" width="120px" alt="" height="120px">
 
 
-  <nav style="height: 100px; margin-top: 20px">
-
+  <nav>
       <a href="{% url 'dashboard' %}">HOME</a>
-      <a href="{% url 'dashboard' %}">Ebooks</a>
+      <a href="{% url 'dashboard' %}">Books</a>
       <a href="{% url 'contact' %}">Contact</a>
-      <a href="#">Novels</a>
-      <a href="#">About</a>
+      <a href="{% url 'novel' %}">Novels</a>
+      <a href="{% url 'about' %}">About</a>
       <a href="{% url 'gallery' %}">Gallery</a>
-      <a href="{% url 'home' %}">Dashboard</a>
+{#      <a href="{% url 'home' %}">Dashboard</a>#}
       <a href="{% url 'accountpage' %}">Account</a>
       <a href="{% url 'logout' %}">LOGOUT</a>
       <div class="animation start-home"></div>
@@ -473,50 +484,6 @@ ul{
       </div>
     </div>
 
-    <div class="recommendation">
-        <h2>Recommended Books</h2>
-        <br>
-
-        <div class="cards-container">
-            <b href="#">
-            <div class="cards">
-                <img src="https://covers.openlibrary.org/b/olid/OL19374060M-M.jpg" alt="">
-                <p>The works of Horace</p>
-            </div>
-            </b>
-            <b href="#">
-            <div class="cards">
-                <img src="https://covers.openlibrary.org/b/olid/OL19374060M-M.jpg" alt="">
-                <p>The works of Horace</p>
-            </div>
-            </b>
-            <b href="#">
-            <div class="cards">
-                <img src="https://covers.openlibrary.org/b/olid/OL19374060M-M.jpg" alt="">
-                <p>The works of Horace</p>
-            </div>
-            </b>
-            <b href="#">
-            <div class="cards">
-                <img src="https://covers.openlibrary.org/b/olid/OL19374060M-M.jpg" alt="">
-                <p>The works of Horace</p>
-            </div>
-            </b>
-            <b href="#">
-            <div class="cards">
-                <img src="https://covers.openlibrary.org/b/olid/OL19374060M-M.jpg" alt="">
-                <p>The works of Horace</p>
-            </div>
-            </b>
-            <b href="#">
-            <div class="cards">
-                <img src="https://covers.openlibrary.org/b/olid/OL19374060M-M.jpg" alt="">
-                <p>The works of Horace</p>
-            </div>
-            </b>
-
-        </div>
-    </div>
 
 
   <!--footer-->

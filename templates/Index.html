@@ -1,11 +1,14 @@
+
+
 {%  extends 'main.html' %}
+
+{% load static %}
+
 
 {% block content %}
 
 {%  include 'status.html' %}
 
-<hr>
-{#{% load static %}#}
 <div class="container-fluid">
 <div class="row" style="padding-top: 30px">
 
@@ -17,7 +20,8 @@
             <div class="card mb-3">
                 <div class="card-header" style="text-align: center">
                     <i class="fas fa-table text-primary"></i>
-                    Book booked Request details
+                    Request Books List
+
                 </div>
                 <div class="card-body">
 
@@ -28,56 +32,38 @@
                         <table class="table table-bordered" id="dataTable" style=" width:100%; cellspacing:0">
                             <thead>
                             <tr>
+                                <th>S.N</th>
                                 <th>Book Name</th>
-
-
-
-                                <th>Student Name</th>
-
-                                <th>Email</th>
-
-
-                                <th>Request Date</th>
-
+                                <th>Requester details</th>
                                 <th>Action</th>
+
+
 
                             </tr>
                             </thead>
                             <tbody>
 
 
-{#                            	{% if requests %}#}
-                            	  {% for data in dataset %}
+{% if post %}
 
-
-                                <tr>
-                                <td>{{ data.name }}</td>
-
-
-
-
-								<td>{{data.username}}</td>
-								<td>{{data.email}}</td>
-
-                                   <td>{{data.date_error_message }}</td>
-
-
+{% for i in post %}
+                            <tr>
+                                <td>{{ i.id }}</td>
+                                <td>{{ i.title }}</td>
+								<td>{{i.content}}</td>
                                     <td>
-                                    <a href="{% url 'dashboards' data.id%}"><button type="button" class="btn btn-warning"> view</button></a>
+                                        <a href="#"><button type="button" class="btn btn-danger">borrow book</button></a>
 
 
-                                  <a href="{% url 'dashboards' data.id%}"><button type="button" class="btn btn-danger"> Delete</button></a>
+                                  <a href="{% url 'ldrequestb' i.id%}"><button type="button" class="btn btn-danger"> Delete</button></a>
                                     </td>
 
                                 </tr>
+{% endfor %}
+{% endif %}
 
-                                <!-- end for and if -->
-                                {% endfor %}
-{#                                {% endif %}#}
                             </tbody>
                         </table>
-
-
 
 
                     </div>
@@ -95,7 +81,10 @@
                 </div>
 
 
-
+    <script type="text/javascript" src="{% static 'js/jquery-2.1.3.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.dataTables.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 
 
 

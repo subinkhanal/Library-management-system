@@ -35,22 +35,26 @@ body {
     line-height: 1.5;
     text-align: left;
     color: rgb(153, 165, 175);
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
     font-family: 'Open Sans', sans-serif;
 }
           nav{
               position: relative;
-              margin: 0px auto 0;
-              width: 1010px;
-              height: 60px;
-              background: linear-gradient(45deg, #9b00e8, #39d7ff);
               border-radius: 8px;
               font-size:0;
               background-size: cover;
               top: -110px;
-              left: 125px;
+              left: 20px;
+              background-image: linear-gradient(to right bottom, #08a7d7, #0091e3, #0077e8, #3554de, #7b06c0);
+              margin: 30px auto;
+              width: 68%;
+              height: 60px;
+          }
+
+          nav a:hover {
+              color: white;
+              text-decoration: none;
           }
           nav a {
               font-size: 15px;
@@ -68,10 +72,12 @@ body {
               height: 100%;
               top:0;
               z-index: 0;
-              background: #0393b8;
+              background: #0077e8;
+              color: white;
               width:100%;
               border-radius: 8px;
           }
+
           a:nth-child(1){
               width: 100px;
 
@@ -154,12 +160,11 @@ body {
 
 
 .f{
-	background:linear-gradient(339deg
-, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-image: linear-gradient(to right bottom, #08a7d7, #0091e3, #0077e8, #3554de, #7b06c0);
     color: #fdfdfd;
     font-size: 20px;
     padding: 0px 0 20px;
-    margin-bottom: 0;
+    padding-top: 30px;
 }
 .f p{
 	color: #f1e7e7;
@@ -223,6 +228,55 @@ ul{
 }
 
 .image-thumbail {
+}
+          body {
+              background-color: rgb(245, 245, 245);
+          }
+
+          * {
+              box-sizing: border-box;
+          }
+
+
+.menu {
+  float: left;
+  width: 20%;
+  text-align: center;
+}
+
+.menu a {
+  background-color: #e5e5e5;
+  padding: 8px;
+  margin-top: 7px;
+  display: block;
+  width: 100%;
+  color: black;
+}
+
+.main {
+  float: left;
+  width: 60%;
+  padding: 0 20px;
+}
+
+.right {
+  background-color: #e5e5e5;
+  float: left;
+  width: 20%;
+  padding: 15px;
+  margin-top: 7px;
+  text-align: center;
+}
+
+@media only screen and (max-width: 620px) {
+  /* For mobile phones: */
+  .menu, .main, .right {
+    width: 100%;
+  }
+}
+        .image-thumbail {
+            height: 400px;
+>>>>>>> origin/main
             object-fit: cover;
     width:400px;
 
@@ -238,46 +292,49 @@ ul{
 
         }
 
-        .Center{
-            background: linear-gradient(159deg
-, #ee7752, #e73c7e, #23a6d5, #23d5ab);;
-            position:center;
-            font-family: Serif, cursive;
-        }
-        .Center h1{
-            margin-left: 500px;
-        }
-        .Center h3{
-            margin-left: 600px;
-        }
-        button{
-            width: 100%;
-        }
-.view{
-    background-color: #00d4ff;
-    font-size: 25px;
-   position: center;
-    width: 30%;
-    border-radius: 20px;
+        .container2 {
+            width: 80%;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            background: rgb(241, 241, 241);
+            padding: 35px;
+            margin-bottom: 50px;
 }
 
+.items {
+    background: white;
+    padding: 10px;
+}
 
-
+.items a{
+    text-decoration: none;
+    color: white;
+}
+.items-txt{
+    margin: 20px 0;
+    color: black;
+    text-align: center;
+}
 
       </style>
   </head>
   <body>
-  <div id="logo">
-      <img src="{% static 'images/bluelibe.png' %}" width="120px" ">
 
-  <nav style="height: 100px; margin-top: 0px">
+
+
+  <div id="logo">
+      <img src="{% static 'images/bluelibe.png' %}" width="120px">
+
+ <nav>
       <a href="{% url 'dashboard' %}">HOME</a>
-      <a href="{% url 'dashboard' %}">Ebooks</a>
+      <a href="{% url 'dashboard' %}">Books</a>
       <a href="{% url 'contact' %}">Contact</a>
-      <a href="#">Novels</a>
-      <a href="#">About</a>
+      <a href="{% url 'novel' %}">Novels</a>
+      <a href="{% url 'about' %}">About</a>
       <a href="{% url 'gallery' %}">Gallery</a>
-      <a href="{% url 'home' %}">Dashboard</a>
+{#      <a href="{% url 'home' %}">Dashboard</a>#}
       <a href="{% url 'accountpage' %}">Account</a>
       <a href="{% url 'logout' %}">LOGOUT</a>
       <div class="animation start-home"></div>
@@ -285,32 +342,24 @@ ul{
   </div>
     <!-- end menu section -->
 
-    <section>
-    <div class="col-md-9">
-                <div class="row" style=" background-color: #00000030; width: 1330px;">
 
-                   <h1 style="margin-left: 45%">Gallery</h1><br>
+  <h1 style="text-align: center;font-size: 55px;font-weight: bold;text-decoration: underline #4c4c4c;color: #0077e8">Gallery</h1>
+  <div class="container2">
+    {% for photo in photos %}
+    <div class="items">
+         <img class="image-thumbail" src="{{photo.image.url}}" style="height: 300px;width: 200px">
+         <div class="items-txt">
+             Book: {{photo.category.name}}
+         </div>
 
-            <div class="container-fluid pt70 pb70" id="book-img" style="display: inline-block">
-                <div id="fh5co-projects-feed" class="fh5co-projects-feed clearfix masonry">
+    </div>
+    {% empty %}
+    <h3>No photos...</h3>
+    {% endfor %}
+</div>
 
-                    {% for photo in photos %}
-                    <div class="fh5co-project masonry-brick" style="display: inline-block; padding: 10px; margin-left: 0px">
-                        <a href="#" >
-                            <img class="image-thumbail" src="{{photo.image.url}}" alt="Card image cap" width="280" height="370"><br>
-                            <button><h2 href="{% url 'photo' photo.pk%}">{{ photo.category.name}}</h2></button>
-                        </a>
-                    </div>
-                    {% empty %}
-                <h3>No photos...</h3>
-                {% endfor %}
-                </div>
-            </div>
 
-                </div>
-            </div>
 
-</section>
  <!--footer-->
   <!--footer-->
   <div id="footer">
